@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page AntyBullying</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Talwind CDN   -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  
+</head>
+<body>
+  <section class="flex bg-[url('/assets/img/bg_sudents.png')] bg-center h-screen">
+    <div class="left w-[50vw] h-full">
+      <div class="pt-72 ps-36 pe-4">
+        <p class="font-bold text-6xl">Hello, </p> <p class="font-bold text-6xl">Student!</p>
+  
+        <p class="pt-6 font-semibold text-xl">Selamat Datang di sistem aplikasi AntyBullying, 
+          Ayo laporkan tindakan bullying yang kamu alami sekarang dan identitas kamu dijamin aman lohh
+        </p>
+      </div>
+    </div>
+
+    <div class="right w-[50vw] h-full bg-red-600/60">
+      <div class="container mt-60 px-56">
+        <p class="font-semibold text-3xl text-white text-center mb-10">AntyBullying</p>
+        <p class="font-semibold text-xl text-white mb-2">Role : </p>
+        <div class="flex gap-1 w-44 mb-10 bg-white rounded-md">
+          <a href="login-teacher.html" class=" bg-[var(--primary-color)] opacity-40 px-6 py-1 text-white rounded-md">Guru</a>
+          <a href="#" class=" bg-[var(--primary-color)] px-5 py-1 text-white rounded-md">Murid</a>
+        </div>
+        <p class="font-semibold mt-4 mb-2 text-white">Login dan silahkan masukkan data disini : </p>
+        <form>
+          <input type="text" class="w-96 p-4 rounded-md bg-white mb-4" placeholder="Masukkan NISN">
+          <input type="password" class="w-96 p-4 rounded-md bg-white" placeholder="Masukkan Password">
+          <!-- <button class="block bg-[var(--primary-color)] mt-4 px-36 py-4 text-white rounded-md">Login</button> -->
+          <a href="./dashboard-students/dashboard-profile.html" class="block bg-[var(--primary-color)] mt-4 text-center w-72 py-4 text-white rounded-md">Login</a>
+        </form>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

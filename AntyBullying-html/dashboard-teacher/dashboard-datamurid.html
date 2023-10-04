@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard AntyBullying</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Talwind CDN   -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  
+</head>
+<body>
+  <main class="flex">
+    <!-- SIDEBAR DASHBOARD STUDENTS -->
+    <section class="sidebarStudent bg-[var(--secondary-color)] h-screen sticky top-0 w-80 p-4 text-white text-center">
+      <div class="container relative h-full">
+        <div class="header">
+          <img class="mx-auto mb-5 rounded-full w-48" src="../assets/img/profile-pic.jpg" alt="profile-pic">
+          <div class="title mb-10">
+            <h4>Diah Suratmi</h4>
+            <p>2548511099855</p>
+          </div>
+        </div>
+        <ul class="btn-menu mx-auto">
+          <li class="flex gap-2 mb-2 justify-center items-center hover:bg-white/30 rounded-md h-12 cursor-default">
+            <!-- <img src="" alt="icon-info"> -->
+            <svg
+              fill="currentColor"
+              viewBox="0 0 16 16"
+              height="1.2em"
+              width="1.2em"
+            >
+              <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 017 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 01-.014.002H7.022zM11 7a2 2 0 100-4 2 2 0 000 4zm3-2a3 3 0 11-6 0 3 3 0 016 0zM6.936 9.28a5.88 5.88 0 00-1.23-.247A7.35 7.35 0 005 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 015 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 004 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 116 0 3 3 0 01-6 0zm3-2a2 2 0 100 4 2 2 0 000-4z" />
+            </svg>
+            <a href="dashboard-profile.html">
+              <p class="font-medium">Profile Saya</p>
+            </a>
+          </li>
+          <li class="flex gap-2 mb-2 justify-center items-center hover:bg-white/30 rounded-md h-12 cursor-default">
+            <!-- <img src="" alt="icon-send"> -->
+            <svg
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+              height="1.5em"
+              width="1.5em"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" />
+              <path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h5.697M18 14v4h4M18 11V7a2 2 0 00-2-2h-2" />
+              <path d="M10 3 H12 A2 2 0 0 1 14 5 V5 A2 2 0 0 1 12 7 H10 A2 2 0 0 1 8 5 V5 A2 2 0 0 1 10 3 z" />
+              <path d="M22 18 A4 4 0 0 1 18 22 A4 4 0 0 1 14 18 A4 4 0 0 1 22 18 z" />
+              <path d="M8 11h4M8 15h3" />
+            </svg>
+            <a href="dashboard-daftarlaporan.html">
+              <p class="font-medium">Daftar Laporan</p>
+            </a>
+          </li>
+          
+          <li class="flex gap-2 mb-2 justify-center items-center hover:bg-white/30 rounded-md h-12 cursor-default">
+            <!-- <img src="" alt="icon-info"> -->
+            <svg
+              fill="currentColor"
+              viewBox="0 0 16 16"
+              height="1.2em"
+              width="1.2em"
+            >
+              <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 017 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 01-.014.002H7.022zM11 7a2 2 0 100-4 2 2 0 000 4zm3-2a3 3 0 11-6 0 3 3 0 016 0zM6.936 9.28a5.88 5.88 0 00-1.23-.247A7.35 7.35 0 005 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 015 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 004 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 116 0 3 3 0 01-6 0zm3-2a2 2 0 100 4 2 2 0 000-4z" />
+            </svg>
+            <a href="#">
+              <p class="font-medium">Data Murid Kelas</p>
+            </a>
+          </li>
+          <li class="flex gap-2 mb-2 justify-center items-center hover:bg-white/30 rounded-md h-12 cursor-default">
+            <!-- <img src="" alt="icon-send"> -->
+            <svg
+              fill="currentColor"
+              viewBox="0 0 16 16"
+              height="1.2em"
+              width="1.2em"
+            >
+              <path d="M15.854.146a.5.5 0 01.11.54l-5.819 14.547a.75.75 0 01-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 01.124-1.33L15.314.037a.5.5 0 01.54.11zM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493z" />
+            </svg>
+            <a href="dashboard-inputSP.html">
+              <p class="font-medium">Input Surat Peringatan</p>
+            </a>
+          </li>
+        </ul>
+
+        <div class="absolute inset-x-0 bottom-0">
+          <ul class="mb-8">
+            <li class="flex gap-2 justify-center items-center hover:bg-white/30 rounded-md h-12 cursor-default">
+              <!-- <img src="" alt="icon-logout"> -->
+              <svg
+                viewBox="0 0 1024 1024"
+                fill="currentColor"
+                height="1.2em"
+                width="1.2em"
+              >
+                <path d="M868 732h-70.3c-4.8 0-9.3 2.1-12.3 5.8-7 8.5-14.5 16.7-22.4 24.5a353.84 353.84 0 01-112.7 75.9A352.8 352.8 0 01512.4 866c-47.9 0-94.3-9.4-137.9-27.8a353.84 353.84 0 01-112.7-75.9 353.28 353.28 0 01-76-112.5C167.3 606.2 158 559.9 158 512s9.4-94.2 27.8-137.8c17.8-42.1 43.4-80 76-112.5s70.5-58.1 112.7-75.9c43.6-18.4 90-27.8 137.9-27.8 47.9 0 94.3 9.3 137.9 27.8 42.2 17.8 80.1 43.4 112.7 75.9 7.9 7.9 15.3 16.1 22.4 24.5 3 3.7 7.6 5.8 12.3 5.8H868c6.3 0 10.2-7 6.7-12.3C798 160.5 663.8 81.6 511.3 82 271.7 82.6 79.6 277.1 82 516.4 84.4 751.9 276.2 942 512.4 942c152.1 0 285.7-78.8 362.3-197.7 3.4-5.3-.4-12.3-6.7-12.3zm88.9-226.3L815 393.7c-5.3-4.2-13-.4-13 6.3v76H488c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h314v76c0 6.7 7.8 10.5 13 6.3l141.9-112a8 8 0 000-12.6z" />
+              </svg>
+              <a href="../login-teacher.html">
+                <p class="font-medium">Logout</p>
+              </a>
+            </li>
+          </ul>
+          <p class="font-semibold">AntyBullying v.1.0.0</p>
+        </div>
+      </div>
+    </section>
+    <!-- EKD SECTION OF SIDEBAR -->
+
+    <!-- MAIN CONTENT DASHBOARD -->
+    <section class="content bg-[#F1F2F5] flex-1 p-5">
+      <div class="container mt-8">
+        <div class="title">
+          <p class="font-semibold text-3xl">Data Murid</p>
+          <p>Cari data murid dalam daftar pencarian.</p>
+        </div>
+
+        <div class="searchbar p-1 px-2 mt-8 bg-white rounded-lg">
+          <div class="flex items-center">
+            <svg
+              viewBox="0 0 1024 1024"
+              fill="currentColor"
+              height="2em"
+              width="2em"
+            >
+              <path d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z" />
+            </svg>
+            <input class="w-full p-2 bg-transparent" type="text" placeholder="Cari Surat Peringatan Siswa ...">
+          </div>
+        </div>
+
+        <div class="grid-datamurid mt-10 flex max-[1250px]:flex-wrap gap-2">
+          <div class="col1 w-full gap-2">
+            <div class="card flex gap-4 items-center mb-2 bg-white p-4 rounded-md">
+              <img src="../assets/img/profile-pic.jpg" alt="pic-students" class="w-28 rounded-full">
+              <span class="w-64">
+                <p>Nama : Agus Hartanto</p>
+                <p>TTL : Bandung, 30 February 2000</p>
+                <p>Alamat : Papua, Fak-Fak 37, Papua Barat. 1377</p>
+              </span>
+            </div>
+            <div class="card flex gap-4 items-center bg-white p-4 rounded-md">
+              <img src="../assets/img/profile-pic.jpg" alt="pic-students" class="w-28 rounded-full">
+              <span class="w-64">
+                <p>Nama : Agus Hartanto</p>
+                <p>TTL : Bandung, 30 February 2000</p>
+                <p>Alamat : Papua, Fak-Fak 37, Papua Barat. 1377</p>
+              </span>
+            </div>
+          </div>
+          <div class="col2 w-full gap-2">
+            <div class="card flex gap-4 items-center mb-2 bg-white p-4 rounded-md">
+              <img src="../assets/img/profile-pic.jpg" alt="pic-students" class="w-28 rounded-full">
+              <span class="w-64">
+                <p>Nama : Agus Hartanto</p>
+                <p>TTL : Bandung, 30 February 2000</p>
+                <p>Alamat : Papua, Fak-Fak 37, Papua Barat. 1377</p>
+              </span>
+            </div>
+            <div class="card flex gap-4 items-center bg-white p-4 rounded-md">
+              <img src="../assets/img/profile-pic.jpg" alt="pic-students" class="w-28 rounded-full">
+              <span class="w-64">
+                <p>Nama : Agus Hartanto</p>
+                <p>TTL : Bandung, 30 February 2000</p>
+                <p>Alamat : Papua, Fak-Fak 37, Papua Barat. 1377</p>
+              </span>
+            </div>
+          </div>
+          <div class="col3 w-full gap-2">
+            <div class="card flex gap-4 items-center mb-2 bg-white p-4 rounded-md">
+              <img src="../assets/img/profile-pic.jpg" alt="pic-students" class="w-28 rounded-full">
+              <span class="w-64">
+                <p>Nama : Agus Hartanto</p>
+                <p>TTL : Bandung, 30 February 2000</p>
+                <p>Alamat : Papua, Fak-Fak 37, Papua Barat. 1377</p>
+              </span>
+            </div>
+            <div class="card flex gap-4 items-center bg-white p-4 rounded-md">
+              <img src="../assets/img/profile-pic.jpg" alt="pic-students" class="w-28 rounded-full">
+              <span class="w-64">
+                <p>Nama : Agus Hartanto</p>
+                <p>TTL : Bandung, 30 February 2000</p>
+                <p>Alamat : Papua, Fak-Fak 37, Papua Barat. 1377</p>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-table flex gap-10 bg-white mt-10 p-4 h-fit rounded-md w-fit">
+          <div>
+            <img src="../assets/img/profile-pic.jpg" alt="pic-students" class="h-72 w-64 rounded-sm mb-4">
+            <p class="bg-[#F1F2F5] px-8 py-2 rounded-md font-semibold">Surat Peringatan ke-5</p>
+          </div>
+
+          <div>
+            <div class="data-siswa p-4 mb-8 bg-[#F1F2F5] rounded-md">
+              <p class="font-semibold">Data Siswa</p>
+              <p>Nama : Udin Hermansyah</p>
+              <p>NIS : 1255448879789</p>
+              <p>Kelas : 5C</p>
+              <p>Kasus : Memukul teman perempuan dilapangan</p>
+            </div>
+            <div class="data-ortu p-4 bg-[#F1F2F5] rounded-md">
+              <p class="font-semibold">Data Orang Tua Siswa</p>
+              <p>Nama Ibu : Markiah</p>
+              <p>Nama Ayah : Tono Surtoyo</p>
+              <p>Alamat Rumah : Jl. Cendrawasih 37 Babut, Tengerang. 13755</p>
+            </div>
+          </div>
+        </div>
+    </section>
+    <!-- EKD SECTION OF MAIN CONTENT SIDEBAR -->
+  </main>
+
+</body>
+</html>
