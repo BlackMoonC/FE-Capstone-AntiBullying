@@ -5,12 +5,24 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './index.css'
+import Root from "./routes/root";
 import DashboardsTeacher from './pages/teacher'
+import TeacherDataMurid from './pages/teacher/data_murid'
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <DashboardsTeacher />,
+    path: "/teacher",
+    element: <Root />,
+    children:[
+      {
+        index: true,
+        element: <DashboardsTeacher />,
+      },
+      {
+        path: 'data-murid',
+        element: <TeacherDataMurid />,
+      },
+    ], 
   },
 ]);
 

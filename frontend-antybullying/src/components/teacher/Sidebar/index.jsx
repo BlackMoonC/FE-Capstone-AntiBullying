@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import logo from '../../../assets/img/profile-pic.jpg'
 
 export default function index() {
@@ -27,9 +28,9 @@ export default function index() {
                 width="1.2em">
                 <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 017 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 01-.014.002H7.022zM11 7a2 2 0 100-4 2 2 0 000 4zm3-2a3 3 0 11-6 0 3 3 0 016 0zM6.936 9.28a5.88 5.88 0 00-1.23-.247A7.35 7.35 0 005 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 015 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 004 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 116 0 3 3 0 01-6 0zm3-2a2 2 0 100 4 2 2 0 000-4z" />
               </svg>
-              <a href="dashboard-profile.html">
+              <Link to="/teacher/">
                 <p className="font-medium">Profile Saya</p>
-              </a>
+              </Link>
             </li>
             <li className="flex gap-2 mb-2 justify-center items-center hover:bg-white/30 rounded-md h-12 cursor-default">
               {/* <img src="" alt="icon-send"> */}
@@ -48,9 +49,9 @@ export default function index() {
                 <path d="M22 18 A4 4 0 0 1 18 22 A4 4 0 0 1 14 18 A4 4 0 0 1 22 18 z" />
                 <path d="M8 11h4M8 15h3" />
               </svg>
-              <a href="#">
+              <Link to="/teacher">
                 <p className="font-medium">Daftar Laporan</p>
-              </a>
+              </Link>
             </li>
             <li className="flex gap-2 mb-2 justify-center items-center hover:bg-white/30 rounded-md h-12 cursor-default">
               {/* <img src="" alt="icon-info"> */}
@@ -61,9 +62,9 @@ export default function index() {
                 width="1.2em">
                 <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 017 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 01-.014.002H7.022zM11 7a2 2 0 100-4 2 2 0 000 4zm3-2a3 3 0 11-6 0 3 3 0 016 0zM6.936 9.28a5.88 5.88 0 00-1.23-.247A7.35 7.35 0 005 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 015 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 004 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 116 0 3 3 0 01-6 0zm3-2a2 2 0 100 4 2 2 0 000-4z" />
               </svg>
-              <a href="dashboard-datamurid.html">
+              <Link to="/teacher/data-murid">
                 <p className="font-medium">Data Murid Kelas</p>
-              </a>
+              </Link>
             </li>
             <li className="flex gap-2 mb-2 justify-center items-center hover:bg-white/30 rounded-md h-12 cursor-default">
               {/* <img src="" alt="icon-send"> */}
