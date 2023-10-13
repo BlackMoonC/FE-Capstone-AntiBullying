@@ -170,7 +170,7 @@ export default function index() {
       <div className="list-table flex gap-10 bg-white mt-10 p-4 h-fit rounded-md w-fit">
         <div>
           <img
-            src="../assets/img/profile-pic.jpg"
+            src="/img/profile-pic.jpg"
             alt="pic-students"
             className="h-72 w-64 rounded-sm mb-4"
           />

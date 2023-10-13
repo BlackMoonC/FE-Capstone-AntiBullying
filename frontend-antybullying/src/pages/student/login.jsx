@@ -33,7 +33,7 @@ export default function login() {
   };
 
   return (
-    <section className="flex bg-[url('../../assets/img/bg_students.png')] bg-center h-screen">
+    <section className="flex bg-[url('assets/img/bg_students.png')] bg-center h-screen">
       <div className="left w-[50vw] h-full">
         <div className="pt-72 ps-36 pe-4">
           <p className="font-bold text-6xl">Hello, </p>{" "}

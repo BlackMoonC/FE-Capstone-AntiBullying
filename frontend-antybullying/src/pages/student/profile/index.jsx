@@ -11,7 +11,7 @@ export default function index() {
     <div className="photo w-48 text-center mt-10">
       <img
         className="mx-auto mb-5 rounded-full"
-        src="../assets/img/profile-pic.jpg"
+        src="/img/profile-pic.jpg"
         alt="profile-pic"
       />
       <div className="title mb-4">

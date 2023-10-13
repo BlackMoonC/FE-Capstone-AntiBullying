@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logo from '../../../assets/img/profile-pic.jpg'
 import { useNavigate } from "react-router-dom";
 
 export default function index() {
@@ -17,7 +18,7 @@ export default function index() {
           <div className="header">
             <img
               className="mx-auto mb-5 rounded-full w-48"
-              src="../assets/img/profile-pic.jpg"
+              src={logo}
               alt="profile-pic"
             />
             <div className="title mb-10">
