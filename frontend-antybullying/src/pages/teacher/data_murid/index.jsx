@@ -191,6 +191,8 @@ export default function index() {
             <p>Nama Ibu : Markiah</p>
             <p>Nama Ayah : Tono Surtoyo</p>
             <p>Alamat Rumah : Jl. Cendrawasih 37 Babut, Tengerang. 13755</p>
+            <p>Nomor Handphone : 0821986200381</p>
+            <p>Email : myparent@school.co.id</p>
           </div>
         </div>
       </div>

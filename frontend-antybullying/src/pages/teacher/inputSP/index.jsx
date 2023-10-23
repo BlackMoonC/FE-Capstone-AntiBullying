@@ -19,38 +19,45 @@ export default function index() {
       />
     </div>
   </div>
-  <div className="list-table flex gap-10 bg-white mt-10 p-4 h-fit rounded-md w-fit">
-    <img
-      src="/img/profile-pic.jpg"
-      alt="pic-students"
-      className="h-72 w-64 rounded-sm"
-    />
-    <div>
-      <div className="data-siswa p-4 mb-8 bg-[#F1F2F5] rounded-md">
-        <p className="font-semibold">Data Siswa</p>
-        <p>Nama : Udin Hermansyah</p>
-        <p>NIS : 1255448879789</p>
-        <p>Kelas : 5C</p>
-        <p>Kasus : Memukul teman perempuan dilapangan</p>
-      </div>
-      <div className="data-ortu p-4 bg-[#F1F2F5] rounded-md">
-        <p className="font-semibold">Data Orang Tua Siswa</p>
-        <p>Nama Ibu : Markiah</p>
-        <p>Nama Ayah : Tono Surtoyo</p>
-        <p>Alamat Rumah : Jl. Cendrawasih 37 Babut, Tengerang. 13755</p>
+  <div className="flex gap-4">
+    <div className="list-table flex gap-10 bg-white mt-10 p-4 h-fit rounded-md w-fit">
+      <img
+        src="/img/profile-pic.jpg"
+        alt="pic-students"
+        className="h-72 w-64 rounded-sm"
+      />
+      <div>
+        <div className="data-siswa p-4 mb-8 bg-[#F1F2F5] rounded-md">
+          <p className="font-semibold">Data Siswa</p>
+          <p>Nama : Udin Hermansyah</p>
+          <p>NIS : 1255448879789</p>
+          <p>Kelas : 5C</p>
+          <p>Kasus : Memukul teman perempuan dilapangan</p>
+        </div>
+        <div className="data-ortu p-4 bg-[#F1F2F5] rounded-md">
+          <p className="font-semibold">Data Orang Tua Siswa</p>
+          <p>Nama Ibu : Markiah</p>
+          <p>Nama Ayah : Tono Surtoyo</p>
+          <p>Alamat Rumah : Jl. Cendrawasih 37 Babut, Tengerang. 13755</p>
+          <p>Nomor Handphone : 0821986200381</p>
+          <p>Email : myparent@school.co.id</p>
+        </div>
       </div>
     </div>
-  </div>
-  <div className="input-SP mt-8">
-    <p className="font-semibold mb-2">Tindakan</p>
-    <button className="items-center bg-[var(--secondary-color)] text-white px-14 py-2 rounded-md">
-      Tambah Surat Peringatan
-    </button>
+    <div className="input-SP mt-8 relative">
+      <p className="font-semibold mb-2">Tindakan</p>
+      <button className="bg-[var(--secondary-color)] shadow-md text-white px-14 py-2 rounded-md">
+        Tambah Surat Peringatan
+      </button>
+      <button className="bg-white shadow-md text-black absolute w-full left-0 bottom-0 px-14 py-2 rounded-md">
+        Reset
+      </button>
+    </div>
   </div>
   <hr className="mt-4 w-full border border-slate-400 border-dashed" />
-  <div className="btn-submit mt-14">
-    <button className="items-center bg-[var(--secondary-color)] text-white px-14 py-2 rounded-md">
-      Submit Surat Peringatan
+  <div className="btn-submit mt-14 flex justify-end">
+    <button className="bg-[var(--secondary-color)] text-white px-14 py-2 rounded-md">
+      Selesai
     </button>
   </div>
 </>
