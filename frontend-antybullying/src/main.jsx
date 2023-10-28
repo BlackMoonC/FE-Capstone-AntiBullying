@@ -19,56 +19,63 @@ import LoginStudent from './pages/student/login'
 import ReportStudent from './pages/student/sendReport'
 import ProfileStudent from './pages/student/profile'
 import StatusReport from './pages/student/statusReport'
+import { GlobalProvider } from "./context/GlobalContext";
 
 const router = createBrowserRouter([
   {
-    path: "/teacher",
-    element: <Root />,
+    element:<GlobalProvider/>,
     children:[
       {
-        index: true,
-        element: <DashboardsTeacher />,
+        path: "/teacher",
+        element: <Root />,
+        children:[
+          {
+            index: true,
+            element: <DashboardsTeacher />,
+          },
+          {
+            path: 'data-murid',
+            element: <TeacherDataMurid />,
+          },
+          {
+            path: 'profile',
+            element: <ProfileTeacher />,
+          },
+          {
+            path: 'Input-Surat-Peringatan',
+            element: <InputSP />,
+          },
+        ], 
       },
       {
-        path: 'data-murid',
-        element: <TeacherDataMurid />,
+        path: '/teacher/login',
+        element: <LoginTeacher />,
       },
       {
-        path: 'profile',
-        element: <ProfileTeacher />,
+        path: '/student/login',
+        element: <LoginStudent />,
       },
       {
-        path: 'Input-Surat-Peringatan',
-        element: <InputSP />,
+        path: "/student",
+        element: <StudentLayout />,
+        children:[
+          {
+            path: 'send-report',
+            element: <ReportStudent />,
+          },
+          {
+            path: 'profile',
+            element: <ProfileStudent />,
+          },
+          {
+            path: 'status-report',
+            element: <StatusReport />,
+          },
+        ], 
       },
-    ], 
-  },
-  {
-    path: '/teacher/login',
-    element: <LoginTeacher />,
-  },
-  {
-    path: '/student/login',
-    element: <LoginStudent />,
-  },
-  {
-    path: "/student",
-    element: <StudentLayout />,
-    children:[
-      {
-        path: 'send-report',
-        element: <ReportStudent />,
-      },
-      {
-        path: 'profile',
-        element: <ProfileStudent />,
-      },
-      {
-        path: 'status-report',
-        element: <StatusReport />,
-      },
-    ], 
-  },
+    ]
+  }
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
