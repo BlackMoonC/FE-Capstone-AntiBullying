@@ -20,62 +20,64 @@ import ReportStudent from './pages/student/sendReport'
 import ProfileStudent from './pages/student/profile'
 import StatusReport from './pages/student/statusReport'
 import { GlobalProvider } from "./context/GlobalContext";
+import { IsStudentLoginPage, IsTeacherLoginPage } from "./routes/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
-    element:<GlobalProvider/>,
-    children:[
+    element: <GlobalProvider />,
+    children: [
       {
         path: "/teacher",
         element: <Root />,
-        children:[
+        children: [
           {
             index: true,
             element: <DashboardsTeacher />,
           },
           {
-            path: 'data-murid',
+            path: "data-murid",
             element: <TeacherDataMurid />,
           },
           {
-            path: 'profile',
+            path: "profile",
             element: <ProfileTeacher />,
           },
           {
-            path: 'Input-Surat-Peringatan',
+            path: "Input-Surat-Peringatan",
             element: <InputSP />,
           },
-        ], 
+        ],
       },
-      {
-        path: '/teacher/login',
-        element: <LoginTeacher />,
-      },
-      {
-        path: '/student/login',
-        element: <LoginStudent />,
-      },
+
       {
         path: "/student",
         element: <StudentLayout />,
-        children:[
+        children: [
           {
-            path: 'send-report',
+            path: "send-report",
             element: <ReportStudent />,
           },
           {
-            path: 'profile',
+            path: "profile",
             element: <ProfileStudent />,
           },
           {
-            path: 'status-report',
+            path: "status-report",
             element: <StatusReport />,
           },
-        ], 
+        ],
       },
-    ]
-  }
 
+      {
+        path: "/teacher/login",
+        element:<IsTeacherLoginPage> <LoginTeacher /> </IsTeacherLoginPage>,
+      },
+      {
+        path: "/student/login",
+        element: <IsStudentLoginPage> <LoginStudent /> </IsStudentLoginPage>,
+      },
+    ],
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
