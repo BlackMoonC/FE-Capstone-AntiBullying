@@ -29,7 +29,7 @@ export default function login() {
           <p className="font-semibold mt-4 mb-2 text-white">
             Login dan silahkan masukkan data disini :{" "}
           </p>
-          <form  onSubmit={handleSubmitLogin} className="w-96">
+          <form onSubmit={handleSubmitLogin} className="w-96">
             <input
               readOnly
               type="text"
