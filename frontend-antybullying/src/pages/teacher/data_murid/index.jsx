@@ -32,7 +32,7 @@ export default function index() {
           />
         </div>
       </div>
-      <div className="grid-datamurid h-80 mt-10 overflow-y-auto grid grid-cols-3 gap-4 max-[1500px]:grid-cols-2 max-[1250px]:grid-cols-1">
+      <div className="grid-datamurid border-2 border-black rounded-md h-80 mt-10 overflow-y-auto grid grid-cols-3 gap-4 p-2 max-[1500px]:grid-cols-2 max-[1250px]:grid-cols-1">
         {dataStudent !== null &&
           dataStudent.map((data) => {
             return (
@@ -42,8 +42,8 @@ export default function index() {
               >
                 <Card
                   name={data.nama}
+                  nomorInduk={data.nomorInduk}
                   ttl={data.tempatTanggalLahir}
-                  address={data.alamat}
                 />
               </button>
             );

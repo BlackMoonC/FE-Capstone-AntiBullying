@@ -9,17 +9,12 @@ export default function index() {
   const { handleState, handleFunction } = useContext(GlobalContext);
   const { profileUser } = handleState;
   const { logout } = handleFunction;
-
-  // const logout = () => {
-  //   Cookies.remove("token");
-  //   return navigate("/teacher/login");
-  // };
   return (
     <>
       {/* SIDEBAR DASHBOARD STUDENTS */}
       <section className="sidebarStudent bg-[var(--secondary-color)] h-screen sticky top-0 w-80 p-4 text-white text-center">
         <div className="container relative h-full">
-          <p className="text-left font-semibold mb-5">DASHBOARD GURU</p>
+          <p className="text-left font-semibold mb-5">DASHBOARD WALI KELAS</p>
           <Link to="/teacher/profile">
             <div className="header bg-white/30 rounded-md flex j items-center gap-6 mb-10 p-3">
               <img className="rounded-full w-16" src={logo} alt="profile-pic" />

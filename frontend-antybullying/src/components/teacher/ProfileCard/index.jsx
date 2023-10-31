@@ -32,7 +32,7 @@ function index(props) {
             <p>Email : {props.surel}</p>
           </div>
           <button onClick={getDetailDataStudent(props.nomorInduk, props.move)} className="bg-[var(--secondary-color)] shadow-md text-white mt-5 px-14 py-2 rounded-md">
-            Input Surat Peringatan
+            Input Tindakan
           </button>
         </div>
       </div>

@@ -13,8 +13,8 @@ function index(props) {
         />
         <span className="w-64">
           <p>Nama : {props.name}</p>
+          <p>No Induk : {props.nomorInduk}</p>
           <p>TTL : {props.ttl}</p>
-          <p>Alamat : {props.address}</p>
         </span>
       </div>
     </>

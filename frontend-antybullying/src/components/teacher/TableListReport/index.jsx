@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { GlobalContext } from "../../../context/GlobalContext";
+import moment from 'moment';
 
 export default function index() {
   const { handleState, handleFunction } = useContext(GlobalContext);
@@ -23,10 +24,10 @@ export default function index() {
         {listAllReport !== null &&
           listAllReport.map((data) => {
             return (
-              <tr key={data.id} onClick={getDetailReport(data.id)} className="border-t border-slate-300 hover:bg-slate-100">
-                <td className="p-4">
+              <tr key={data.id} onClick={getDetailReport(data.id)} className="border-t cursor-pointer border-slate-300 hover:bg-slate-100">
+                <td className="p-4 w-48">
                   {data.waktuDilaporkan !== undefined
-                    ? new Date(data.waktuDilaporkan).toDateString()
+                    ? moment(data.waktuDilaporkan).format('MMMM Do YYYY, h:mm a')
                     : "Data Belum Tersedia"}
                 </td>
                 <td className="p-4">
@@ -44,9 +45,9 @@ export default function index() {
                     ? data.lokasiKejadian
                     : "Data Belum Tersedia"}
                 </td>
-                <td className="p-4">
+                <td className="p-4 w-48">
                   {data.waktuKejadian !== undefined
-                    ? new Date(data.waktuKejadian).toDateString()
+                    ?  moment(data.waktuKejadian).format('MMMM Do YYYY, h:mm a')
                     : "Data Belum Tersedia"}
                 </td>
                 <td className="p-4 max-w-sm">
