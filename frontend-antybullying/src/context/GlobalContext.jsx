@@ -103,13 +103,7 @@ export const GlobalProvider = () => {
   useEffect(() => {
     if (fetchStatus) {
       fetchData();
-      if (token) {
-        Cookies.get("roleUser") == "student"
-          ? navigate("student/status-report")
-          : navigate("teacher");
-      }
     }
-
     setFetchStatus(false);
   }, [fetchStatus, setFetchStatus]);
 
@@ -214,14 +208,12 @@ export const GlobalProvider = () => {
       event.preventDefault();
       if (inputLogin.nomorInduk.length == 10 && profileUser.role == "student") {
         getToken(nomorInduk, kataSandi, role);
-        console.log("tester");
-        return navigate("/student/status-report");
+        navigate("/student/status-report");
       } else if (
-        inputLogin.nomorInduk.length == 18 &&
-        profileUser.role == "teacher"
+        inputLogin.nomorInduk.length == 18 && profileUser.role == "teacher"
       ) {
         getToken(nomorInduk, kataSandi, role);
-        return navigate("/teacher");
+        navigate("/teacher");
       } else {
         alert("Login failled. Input is Invalid.");
         logout();
@@ -246,7 +238,7 @@ export const GlobalProvider = () => {
     Cookies.remove("token");
     Cookies.remove("roleUser");
     clearData();
-    return profileUser.role == "student"
+    return profileUser.role === "student"
       ? navigate("/student/login")
       : navigate("/teacher/login");
   };
@@ -272,6 +264,8 @@ export const GlobalProvider = () => {
     setDetailReport,
     updateStatusReport,
     setUpdateStatusReport,
+    fetchStatus,
+    setFetchStatus
   };
 
   let handleFunction = {
