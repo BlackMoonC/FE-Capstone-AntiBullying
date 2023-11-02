@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { GlobalContext } from "../../../context/GlobalContext";
 import Modal from "../../../components/teacher/Modal";
 
@@ -30,9 +30,7 @@ export default function index() {
           <Modal
             title="Dialog modal example"
             openModal={modal}
-            closeModal={() => setModal(false)}>
-              Modal Content
-            </Modal>
+            closeModal={() => setModal(false)}/>
         </div>
         <form className="bg-white p-8 mt-10 rounded-md flex-1">
           <div className="form-group mb-4">

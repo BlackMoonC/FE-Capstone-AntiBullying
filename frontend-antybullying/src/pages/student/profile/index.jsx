@@ -1,7 +1,9 @@
-import React, { useContext } from 'react'
+import React, {useState, useContext } from 'react'
 import { GlobalContext } from "../../../context/GlobalContext";
+import Modal from "../../../components/student/Modal";
 
 export default function index() {
+  const [modal, setModal] = useState(false);
   const { handleState } = useContext(GlobalContext);
   const { profileUser } = handleState;
   return (
@@ -21,11 +23,13 @@ export default function index() {
             <h4>{profileUser !== null && profileUser.nama}</h4>
             <p>{profileUser !== null && profileUser.nomorInduk}</p>
           </div>
-          <a href="#">
-            <button className="bg-[var(--primary-color)] text-white px-4 py-2 rounded-md">
+            <button onClick={() => setModal(true)} className="bg-[var(--primary-color)] text-white px-4 py-2 rounded-md">
               Ubah Password
             </button>
-          </a>
+            <Modal
+            title="Dialog modal example"
+            openModal={modal}
+            closeModal={() => setModal(false)}/>
         </div>
         <form className="bg-white p-8 mt-10 rounded-md flex-1">
           <div className="form-group mb-4">

@@ -103,11 +103,11 @@ export const GlobalProvider = () => {
   useEffect(() => {
     if (fetchStatus) {
       fetchData();
-      if (token) {
-        Cookies.get("roleUser") == "student"
-          ? navigate("student/status-report")
-          : navigate("teacher");
-      }
+      // if (token) {
+      //   Cookies.get("roleUser") == "student"
+      //     ? navigate("student/status-report")
+      //     : navigate("teacher");
+      // }
     }
 
     setFetchStatus(false);
