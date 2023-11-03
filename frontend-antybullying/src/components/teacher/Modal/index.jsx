@@ -20,18 +20,15 @@ export default function index({ openModal, closeModal }) {
     closeModal();
   };
 
-  const handleInput = (inputMessage) =>{
+  const handleInput = (inputMessage) => {
     setMessage(inputMessage);
     setChoosenModal(false);
-  }
+  };
 
   return (
     <dialog ref={ref} className="p-8 w-7/12 text-left">
       {choosenModal === true ? (
-        <Form
-          close={closeModal}
-          doneHandleInput={handleInput}
-        />
+        <Form close={closeModal} doneHandleInput={handleInput} />
       ) : (
         <div className="text-center">
           <h1 className="text-4xl mb-3">{message}</h1>

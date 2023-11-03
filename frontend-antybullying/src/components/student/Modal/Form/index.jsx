@@ -104,7 +104,7 @@ function index({ close, doneHandleInput }) {
           </button>
           <button
             type="submit"
-            className=" bg-[var(--secondary-color)] text-white px-14 py-2 rounded-md">
+            className=" bg-[var(--primary-color)] text-white px-14 py-2 rounded-md">
             Submit
           </button>
         </div>

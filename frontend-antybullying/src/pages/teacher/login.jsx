@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import ButtonSelection from "../../components/login/Button/Selection";
 import { GlobalContext } from "../../context/GlobalContext";
 

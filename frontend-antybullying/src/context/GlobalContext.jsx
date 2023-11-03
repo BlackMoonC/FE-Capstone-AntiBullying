@@ -103,11 +103,11 @@ export const GlobalProvider = () => {
   useEffect(() => {
     if (fetchStatus) {
       fetchData();
-      // if (token) {
-      //   Cookies.get("roleUser") == "student"
-      //     ? navigate("student/status-report")
-      //     : navigate("teacher");
-      // }
+      if (token) {
+        Cookies.get("roleUser") == "student"
+          ? navigate("student/status-report")
+          : navigate("teacher");
+      }
     }
 
     setFetchStatus(false);
@@ -194,6 +194,27 @@ export const GlobalProvider = () => {
     }
   };
 
+  const handleAPIChangePassword = async (form) => {
+    const {currentPassword, newPassword, confirmPassword} = form;
+    const token = Cookies.get("token");
+    console.log(currentPassword);
+    await axios.post("https://antibullying-test.fly.dev/api/users/change-password",
+    {
+      kataSandiLama: currentPassword,
+      kataSandiBaru: newPassword,
+      konfirmasiKataSandi: confirmPassword
+    }
+    ,{
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((res) => {
+      console.log(res.data.pesan)
+    }).catch((err) => {
+      console.log(err.message);
+      // return(err.data.pesan);
+    });
+  }
+
   const getToken = async (nomorInduk, kataSandi, role) => {
     const result = (
       await axios.post(`https://antibullying-test.fly.dev/api/auth/login`, {
@@ -275,6 +296,7 @@ export const GlobalProvider = () => {
   };
 
   let handleFunction = {
+    handleAPIChangePassword,
     handleSubmitLogin,
     handleSubmitSendReport,
     getDetailDataStudent,
