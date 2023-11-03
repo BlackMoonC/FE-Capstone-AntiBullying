@@ -1,6 +1,12 @@
-import React from "react";
+import { useState, useContext } from "react";
+import { GlobalContext } from "../../../context/GlobalContext";
+import Modal from "../../../components/teacher/Modal";
 
 export default function index() {
+  const [modal, setModal] = useState(false);
+  const { handleState } = useContext(GlobalContext);
+  const { profileUser } = handleState;
+
   return (
     <>
       <div className="title">
@@ -11,69 +17,54 @@ export default function index() {
         <div className="photo w-48 text-center mt-10">
           <img
             className="mx-auto mb-5 rounded-full"
-            src="../assets/img/profile-pic.jpg"
+            src="/img/profile-pic.jpg"
             alt="profile-pic"
           />
           <div className="title mb-4">
-            <h4>Diah Suratmi</h4>
-            <p>2548511099855</p>
+            <h4>{profileUser !== null && profileUser.nama}</h4>
+            <p>{profileUser !== null && profileUser.nomorInduk}</p>
           </div>
-          <a href="dashboard-ubah-password.html">
-            <button className="bg-[var(--secondary-color)] text-white px-4 py-2 rounded-md">
-              Ubah Password
-            </button>
-          </a>
+          <button onClick={() => setModal(true)} className="bg-[var(--secondary-color)] text-white px-4 py-2 rounded-md">
+            Ubah Password
+          </button>
+          <Modal
+            title="Dialog modal example"
+            openModal={modal}
+            closeModal={() => setModal(false)}/>
         </div>
         <form className="bg-white p-8 mt-10 rounded-md flex-1">
           <div className="form-group mb-4">
             <label htmlFor="name" className="font-semibold">
-              Nama <span className="text-red-700">*</span>
+              Nama
             </label>
-            <input
-              id="name"
-              className="block w-full bg-[#F1F2F5] rounded-md mt-2 p-2"
-              type="text"
-              placeholder="Ketik Nama Anda disini ..."
-            />
+            <p className="block w-full bg-[#F1F2F5] rounded-md mt-2 p-2">
+              {profileUser !== null && profileUser.nama}
+            </p>
           </div>
           <div className="form-group mb-4">
             <label htmlFor="nis" className="font-semibold">
-              Nomor Induk Pendidik <span className="text-red-700">*</span>
+              Nomor Induk
             </label>
-            <input
-              id="nis"
-              className="date block w-full bg-[#F1F2F5] rounded-md mt-2 p-2 "
-              type="number"
-              placeholder="Ketik Nomor Induk Anda disini ..."
-            />
+            <p className="block w-full bg-[#F1F2F5] rounded-md mt-2 p-2">
+              {profileUser !== null && profileUser.nomorInduk}
+            </p>
           </div>
           <div className="form-group mb-4">
             <label htmlFor="ttl" className="font-semibold">
-              Tempat Tanggal Lahir <span className="text-red-700">*</span>
+              Tempat Tanggal Lahir
             </label>
-            <input
-              id="ttl"
-              className="block w-full bg-[#F1F2F5] rounded-md mt-2 p-2"
-              type="text"
-              placeholder="Tempat Tanggal Lahir ..."
-            />
+            <p className="block w-full bg-[#F1F2F5] rounded-md mt-2 p-2">
+              {profileUser !== null && profileUser.TTL}
+            </p>
           </div>
           <div className="form-group mb-8">
             <label htmlFor="alamat" className="font-semibold">
-              Alamat <span className="text-red-700">*</span>
+              Alamat
             </label>
-            <textarea
-              id="alamat"
-              rows={5}
-              className="block w-full bg-[#F1F2F5] rounded-md mt-2 p-2"
-              type="text"
-              placeholder="Ketik alamat Anda disini ..."
-              defaultValue={""}
-            />
+            <p className="block w-full bg-[#F1F2F5] rounded-md mt-2 p-2">
+              {profileUser !== null && profileUser.alamat}
+            </p>
           </div>
-          <button className="items-center bg-[var(--secondary-color)] text-white px-14 py-2 rounded-md">
-            Submit
-          </button>
         </form>
       </div>
     </>

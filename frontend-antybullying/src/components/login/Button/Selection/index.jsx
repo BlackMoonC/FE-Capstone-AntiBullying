@@ -10,7 +10,7 @@ export default function index({hero}) {
           className={`bg-[var(--${
             hero !== "teacher" ? "primary" : "secondary"
           }-color)] ${
-            hero !== "teacher" ? "opacity-40" : ""
+            hero !== "teacher" ? "opacity-0" : ""
           }  px-6 py-1 text-white rounded-md`}>
           Guru
         </Link>
@@ -19,7 +19,7 @@ export default function index({hero}) {
           className={`bg-[var(--${
             hero === "student" ? "primary" : "secondary"
           }-color)] ${
-            hero !== "student" ? "opacity-40" : ""
+            hero !== "student" ? "opacity-0" : ""
           } px-5 py-1 text-white rounded-md`}>
           Murid
         </Link>

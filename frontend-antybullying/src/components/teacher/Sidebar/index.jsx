@@ -1,52 +1,42 @@
 import {Link} from 'react-router-dom'
 import logo from '../../../assets/img/profile-pic.jpg'
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+// import Cookies from "js-cookie";
+import { useContext } from "react";
+import { GlobalContext } from "../../../context/GlobalContext";
 
 export default function index() {
-  const navigate = useNavigate();
+  const { handleState, handleFunction } = useContext(GlobalContext);
+  const { profileUser } = handleState;
+  const { logout } = handleFunction;
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    return navigate("/teacher/login");
-  };
+  // const logout = () => {
+  //   Cookies.remove("token");
+  //   return navigate("/teacher/login");
+  // };
   return (
     <>
       {/* SIDEBAR DASHBOARD STUDENTS */}
       <section className="sidebarStudent bg-[var(--secondary-color)] h-screen sticky top-0 w-80 p-4 text-white text-center">
         <div className="container relative h-full">
-          <div className="header">
-            <img
-              className="mx-auto mb-5 rounded-full w-48"
-              src={logo}
-              alt="profile-pic"
-            />
-            <div className="title mb-10">
-              <h4>Diah Suratmi</h4>
-              <p>2548511099855</p>
+          <p className="text-left font-semibold mb-5">DASHBOARD GURU</p>
+          <Link to="/teacher/profile">
+            <div className="header bg-white/30 rounded-md flex j items-center gap-6 mb-10 p-3">
+              <img className="rounded-full w-16" src={logo} alt="profile-pic" />
+              <div className="title text-left">
+                <h4>{profileUser !== null && profileUser.nama}</h4>
+                <p>{profileUser !== null && profileUser.nomorInduk}</p>
+              </div>
             </div>
-          </div>
+          </Link>
           <ul className="btn-menu mx-auto">
             <li className="flex gap-2 mb-2 justify-center items-center hover:bg-white/30 rounded-md h-12 cursor-default">
-              {/* <img src="" alt="icon-info"> */}
-              <svg
-                fill="currentColor"
-                viewBox="0 0 16 16"
-                height="1.2em"
-                width="1.2em">
-                <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 017 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 01-.014.002H7.022zM11 7a2 2 0 100-4 2 2 0 000 4zm3-2a3 3 0 11-6 0 3 3 0 016 0zM6.936 9.28a5.88 5.88 0 00-1.23-.247A7.35 7.35 0 005 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 015 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 004 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 116 0 3 3 0 01-6 0zm3-2a2 2 0 100 4 2 2 0 000-4z" />
-              </svg>
-              <Link to="/teacher/profile">
-                <p className="font-medium">Profile Saya</p>
-              </Link>
-            </li>
-            <li className="flex gap-2 mb-2 justify-center items-center hover:bg-white/30 rounded-md h-12 cursor-default">
-              {/* <img src="" alt="icon-send"> */}
               <svg
                 fill="none"
                 stroke="currentColor"
-                strokelinecap="round"
-                strokelinejoin="round"
-                strokewidth="{2}"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="{2}"
                 viewBox="0 0 24 24"
                 height="1.5em"
                 width="1.5em">
@@ -61,7 +51,6 @@ export default function index() {
               </Link>
             </li>
             <li className="flex gap-2 mb-2 justify-center items-center hover:bg-white/30 rounded-md h-12 cursor-default">
-              {/* <img src="" alt="icon-info"> */}
               <svg
                 fill="currentColor"
                 viewBox="0 0 16 16"
@@ -74,7 +63,6 @@ export default function index() {
               </Link>
             </li>
             <li className="flex gap-2 mb-2 justify-center items-center hover:bg-white/30 rounded-md h-12 cursor-default">
-              {/* <img src="" alt="icon-send"> */}
               <svg
                 fill="currentColor"
                 viewBox="0 0 16 16"
@@ -90,7 +78,6 @@ export default function index() {
           <div className="absolute inset-x-0 bottom-0">
             <ul className="mb-8">
               <li className="flex gap-2 justify-center items-center hover:bg-white/30 rounded-md h-12 cursor-default">
-                {/* <img src="" alt="icon-logout"> */}
                 <svg
                   viewBox="0 0 1024 1024"
                   fill="currentColor"
