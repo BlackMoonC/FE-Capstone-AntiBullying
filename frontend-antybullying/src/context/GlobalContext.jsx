@@ -208,7 +208,7 @@ export const GlobalProvider = () => {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => {
-      console.log(res.data.pesan)
+      console.log(res.data.pesan) 
     }).catch((err) => {
       console.log(err.message);
       // return(err.data.pesan);
