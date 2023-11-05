@@ -3,6 +3,8 @@ import { createContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 
+const BASE_URL = "https://antibullying-test.fly.dev"
+
 export const GlobalContext = createContext();
 
 export const GlobalProvider = () => {
@@ -42,7 +44,7 @@ export const GlobalProvider = () => {
   const fetchData = async () => {
     if (token) {
       await axios
-        .get("https://antibullying-test.fly.dev/api/users/profile", {
+        .get("${BASE_URL}/api/users/profile", {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
@@ -60,7 +62,7 @@ export const GlobalProvider = () => {
       if (role === "student") {
         //Send report from dashboard student
         await axios
-          .get("https://antibullying-test.fly.dev/api/reports/mine", {
+          .get("${BASE_URL}/api/reports/mine", {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then((res) => {
@@ -69,7 +71,7 @@ export const GlobalProvider = () => {
 
         //Get all List Name of Student.
         await axios
-          .get("https://antibullying-test.fly.dev/api/students", {
+          .get("${BASE_URL}/api/students", {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then((res) => {
@@ -80,7 +82,7 @@ export const GlobalProvider = () => {
       if (role === "teacher") {
         //Get all data student.
         await axios
-          .get("https://antibullying-test.fly.dev/api/students", {
+          .get("${BASE_URL}/api/students", {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then((res) => {
@@ -89,7 +91,7 @@ export const GlobalProvider = () => {
 
         //Get all data report that sending by student.
         await axios
-          .get("https://antibullying-test.fly.dev/api/reports", {
+          .get("${BASE_URL}/api/reports", {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then((res) => {
@@ -115,7 +117,7 @@ export const GlobalProvider = () => {
 
   const getDetailDataStudent = (nomorInduk, move) => async () => {
     await axios
-      .get(`https://antibullying-test.fly.dev/api/students/${nomorInduk}`, {
+      .get(`${BASE_URL}/api/students/${nomorInduk}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -129,7 +131,7 @@ export const GlobalProvider = () => {
 
   const getDetailReport = (id) => async () => {
     await axios
-      .get(`https://antibullying-test.fly.dev/api/reports/${id}`, {
+      .get(`${BASE_URL}/api/reports/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -146,7 +148,7 @@ export const GlobalProvider = () => {
       // Update status report
       await axios
         .patch(
-          `https://antibullying-test.fly.dev/api/reports/${id}/status`,
+          `${BASE_URL}/api/reports/${id}/status`,
           { status },
           { headers: { Authorization: `Bearer ${token}` } }
         )
@@ -168,7 +170,7 @@ export const GlobalProvider = () => {
       // console.log(sendReport);
       await axios
         .post(
-          "https://antibullying-test.fly.dev/api/reports",
+          "${BASE_URL}/api/reports",
           {
             nomorIndukPelaku,
             waktuKejadian,
@@ -198,7 +200,7 @@ export const GlobalProvider = () => {
     const {currentPassword, newPassword, confirmPassword} = form;
     const token = Cookies.get("token");
     console.log(currentPassword);
-    await axios.post("https://antibullying-test.fly.dev/api/users/change-password",
+    await axios.post("${BASE_URL}/api/users/change-password",
     {
       kataSandiLama: currentPassword,
       kataSandiBaru: newPassword,
@@ -217,7 +219,7 @@ export const GlobalProvider = () => {
 
   const getToken = async (nomorInduk, kataSandi, role) => {
     const result = (
-      await axios.post(`https://antibullying-test.fly.dev/api/auth/login`, {
+      await axios.post(`${BASE_URL}/api/auth/login`, {
         nomorInduk,
         kataSandi,
       })
