@@ -2,6 +2,10 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { createContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 const BASE_URL = "https://antibullying-test.fly.dev"
 
@@ -44,7 +48,7 @@ export const GlobalProvider = () => {
   const fetchData = async () => {
     if (token) {
       await axios
-        .get("${BASE_URL}/api/users/profile", {
+        .get(`${BASE_URL}/api/users/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
@@ -170,7 +174,7 @@ export const GlobalProvider = () => {
       // console.log(sendReport);
       await axios
         .post(
-          "${BASE_URL}/api/reports",
+          `${BASE_URL}/api/reports`,
           {
             nomorIndukPelaku,
             waktuKejadian,
@@ -200,7 +204,7 @@ export const GlobalProvider = () => {
     const {currentPassword, newPassword, confirmPassword} = form;
     const token = Cookies.get("token");
     console.log(currentPassword);
-    await axios.post("${BASE_URL}/api/users/change-password",
+    await axios.post(`${BASE_URL}/api/users/change-password`,
     {
       kataSandiLama: currentPassword,
       kataSandiBaru: newPassword,
@@ -244,7 +248,24 @@ export const GlobalProvider = () => {
         profileUser.role == "teacher"
       ) {
         getToken(nomorInduk, kataSandi, role);
-        return navigate("/teacher");
+        const Toast = MySwal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'success',
+          title: 'Signed in successfully'
+        }).then(() => {
+          return navigate("/teacher");
+        })
       } else {
         alert("Login failled. Input is Invalid.");
         logout();
