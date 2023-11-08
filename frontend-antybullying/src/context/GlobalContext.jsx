@@ -309,9 +309,7 @@ export const GlobalProvider = () => {
       } else {
         Toast.fire({
           icon: 'error',
-          title: "Login failled. Input is Invalid."
-        }).then(() => {
-          logout();
+          title: "Login gagal. Inputan tidak diterima."
         })
       }
     } catch (e) {
@@ -336,7 +334,8 @@ export const GlobalProvider = () => {
       text: "Apakah kamu yakin ingin keluar?",
       icon: "question",
       showCancelButton: true,
-      confirmButtonText: 'Yes',
+      confirmButtonText: 'Iya',
+      cancelButtonText:'Tidak'
     }).then((result) => {
       if(result.isConfirmed){
         Cookies.remove("token");
