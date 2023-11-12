@@ -2,6 +2,23 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { createContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
+const Toast = MySwal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+const BASE_URL = "https://antibullying-test.fly.dev"
 
 export const GlobalContext = createContext();
 
@@ -42,7 +59,7 @@ export const GlobalProvider = () => {
   const fetchData = async () => {
     if (token) {
       await axios
-        .get("https://antibullying-test.fly.dev/api/users/profile", {
+        .get(`${BASE_URL}/api/users/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
@@ -60,7 +77,7 @@ export const GlobalProvider = () => {
       if (role === "student") {
         //Send report from dashboard student
         await axios
-          .get("https://antibullying-test.fly.dev/api/reports/mine", {
+          .get(`${BASE_URL}/api/reports/mine`, {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then((res) => {
@@ -69,7 +86,7 @@ export const GlobalProvider = () => {
 
         //Get all List Name of Student.
         await axios
-          .get("https://antibullying-test.fly.dev/api/students", {
+          .get(`${BASE_URL}/api/students`, {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then((res) => {
@@ -80,7 +97,7 @@ export const GlobalProvider = () => {
       if (role === "teacher") {
         //Get all data student.
         await axios
-          .get("https://antibullying-test.fly.dev/api/students", {
+          .get(`${BASE_URL}/api/students`, {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then((res) => {
@@ -89,7 +106,7 @@ export const GlobalProvider = () => {
 
         //Get all data report that sending by student.
         await axios
-          .get("https://antibullying-test.fly.dev/api/reports", {
+          .get(`${BASE_URL}/api/reports`, {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then((res) => {
@@ -109,7 +126,7 @@ export const GlobalProvider = () => {
 
   const getDetailDataStudent = (nomorInduk, move) => async () => {
     await axios
-      .get(`https://antibullying-test.fly.dev/api/students/${nomorInduk}`, {
+      .get(`${BASE_URL}/api/students/${nomorInduk}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -123,7 +140,7 @@ export const GlobalProvider = () => {
 
   const getDetailReport = (id) => async () => {
     await axios
-      .get(`https://antibullying-test.fly.dev/api/reports/${id}`, {
+      .get(`${BASE_URL}/api/reports/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -140,7 +157,7 @@ export const GlobalProvider = () => {
       // Update status report
       await axios
         .patch(
-          `https://antibullying-test.fly.dev/api/reports/${id}/status`,
+          `${BASE_URL}/api/reports/${id}/status`,
           { status },
           { headers: { Authorization: `Bearer ${token}` } }
         )
@@ -154,51 +171,104 @@ export const GlobalProvider = () => {
   };
 
   //Send Report by Student via Dashboard Student
-  const handleSubmitSendReport = async (event) => {
-    let { nomorIndukPelaku, waktuKejadian, lokasiKejadian, deskripsiKejadian } =
-      sendReport;
-    try {
-      event.preventDefault();
-      // console.log(sendReport);
-      await axios
-        .post(
-          "https://antibullying-test.fly.dev/api/reports",
-          {
-            nomorIndukPelaku,
-            waktuKejadian,
-            lokasiKejadian,
-            deskripsiKejadian,
-          },
-          { headers: { Authorization: `Bearer ${token}` } }
-        )
-        .then((res) => {
-          console.log(res.data.pesan);
-          setSendReport({
-            waktuKejadian: "",
-            lokasiKejadian: "",
-            deskripsiKejadian: "",
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      // setFetchStatus(true);
-    } catch (e) {
-      console.log(e);
-    }
+  const handleSubmitSendReport = (event) => {
+    event.preventDefault();
+    MySwal.fire({
+      title: "Konfirmasi Submit",
+      text: "Apakah kamu yakin ingin mengirim laporan ini?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: 'Iya',
+      cancelButtonText: 'Tidak',
+      focusCancel:true,
+      customClass: {
+        confirmButton: 'bg-[var(--primary-color)] text-black',
+      }
+    }).then(async(result) => {
+      if(result.isConfirmed){
+        let { nomorIndukPelaku, waktuKejadian, lokasiKejadian, deskripsiKejadian } =
+          sendReport;
+        try {
+          // console.log(sendReport);
+          await axios
+            .post(
+              `${BASE_URL}/api/reports`,
+              {
+                nomorIndukPelaku,
+                waktuKejadian,
+                lokasiKejadian,
+                deskripsiKejadian,
+              },
+              { headers: { Authorization: `Bearer ${token}` } }
+            )
+            .then((res) => {
+              console.log(res.data.pesan);
+              setSendReport({
+                waktuKejadian: "",
+                lokasiKejadian: "",
+                deskripsiKejadian: "",
+              });
+              MySwal.fire({
+                icon:'success',
+                title: res.data.pesan,
+                customClass: {
+                  confirmButton: "bg-[var(--primary-color)]"
+                }
+              })
+            })
+            .catch((err) => {
+              console.log(err);
+              MySwal.fire({
+                icon:'error',
+                title: err.response.data.error.pesan,
+              })
+            });
+          // setFetchStatus(true);
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    })
   };
 
+  const handleAPIChangePassword = async (form) => {
+    const {currentPassword, newPassword, confirmPassword} = form;
+    const token = Cookies.get("token");
+    console.log(currentPassword);
+    await axios.post(`${BASE_URL}/api/users/change-password`,
+    {
+      kataSandiLama: currentPassword,
+      kataSandiBaru: newPassword,
+      konfirmasiKataSandi: confirmPassword
+    }
+    ,{
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((res) => {
+      console.log(res.data.pesan) 
+    }).catch((err) => {
+      console.log(err.message);
+      // return(err.data.pesan);
+    });
+  }
+
   const getToken = async (nomorInduk, kataSandi, role) => {
-    const result = (
-      await axios.post(`https://antibullying-test.fly.dev/api/auth/login`, {
-        nomorInduk,
-        kataSandi,
-      })
-    ).data;
-    console.log(result.pesan);
-    Cookies.set("roleUser", role, { expires: 1 });
-    Cookies.set("token", result.token, { expires: 1 });
-    setFetchStatus(true);
+    try{
+      const result = (
+        await axios.post(`${BASE_URL}/api/auth/login`, {
+          nomorInduk,
+          kataSandi,
+        })
+      ).data;
+      console.log(result.pesan);
+      Cookies.set("roleUser", role, { expires: 1 });
+      Cookies.set("token", result.token, { expires: 1 });
+      setFetchStatus(true);
+      return {message: result.pesan, icon: 'success'};
+    }catch(error){
+      const message = error.response.data.error.pesan
+      return {message: message, icon: 'error'};
+    }
   };
 
   const handleSubmitLogin = async (event) => {
@@ -208,15 +278,18 @@ export const GlobalProvider = () => {
       event.preventDefault();
       if (inputLogin.nomorInduk.length == 10 && profileUser.role == "student") {
         getToken(nomorInduk, kataSandi, role);
-        navigate("/student/status-report");
+        console.log("tester");
+        return navigate("/student/status-report");
       } else if (
         inputLogin.nomorInduk.length == 18 && profileUser.role == "teacher"
       ) {
         getToken(nomorInduk, kataSandi, role);
-        navigate("/teacher");
+        return navigate("/teacher");
       } else {
-        alert("Login failled. Input is Invalid.");
-        logout();
+        Toast.fire({
+          icon: 'error',
+          title: "Login gagal. Inputan tidak diterima."
+        })
       }
     } catch (e) {
       console.log(e);
@@ -238,7 +311,7 @@ export const GlobalProvider = () => {
     Cookies.remove("token");
     Cookies.remove("roleUser");
     clearData();
-    return profileUser.role === "student"
+    return profileUser.role == "student"
       ? navigate("/student/login")
       : navigate("/teacher/login");
   };
@@ -269,6 +342,7 @@ export const GlobalProvider = () => {
   };
 
   let handleFunction = {
+    handleAPIChangePassword,
     handleSubmitLogin,
     handleSubmitSendReport,
     getDetailDataStudent,
