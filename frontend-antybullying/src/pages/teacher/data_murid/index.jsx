@@ -31,7 +31,7 @@ export default function index() {
         <p>Cari data murid dalam daftar pencarian.</p>
       </div>
       <Searching handleChange={handleSearch}/>
-      <div className="grid-datamurid h-80 mt-10 overflow-y-auto grid grid-cols-3 gap-4 max-[1500px]:grid-cols-2 max-[1250px]:grid-cols-1">
+      <div className="grid-datamurid border border-black rounded-md p-2 h-80 mt-10 overflow-y-auto grid grid-cols-3 gap-4 max-[1500px]:grid-cols-2 max-[1250px]:grid-cols-1">
         {dataStudent !== null &&
           filteredStudent.map((data) => {
             return (

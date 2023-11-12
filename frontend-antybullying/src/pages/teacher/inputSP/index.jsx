@@ -19,7 +19,7 @@ export default function index() {
       {detailDataStudent !== null && (
         <>
           <div className="flex gap-4 w-full">
-            <div className="list-table flex gap-10 bg-white mt-10 p-4 h-fit rounded-md w-fit">
+            <div className="list-table flex gap-10 bg-white shadow-md mt-10 p-4 h-fit rounded-md w-fit">
               <img
                 src="/img/profile-pic.jpg"
                 alt="pic-students"

@@ -2,7 +2,7 @@
 export default function index({handleChange}) {
   return (
     <>
-      <div className="searchbar p-1 px-2 mt-8 bg-white rounded-lg">
+      <div className="searchbar p-1 px-2 mt-8 bg-white shadow-md rounded-lg">
         <div className="flex items-center">
           <svg
             viewBox="0 0 1024 1024"

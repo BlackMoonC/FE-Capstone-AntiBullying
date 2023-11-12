@@ -5,7 +5,7 @@ export default function index(props) {
   return (
     <>
       <div className="p-2">
-        <div className="bg-white p-4 rounded-md flex-1">
+        <div className="bg-white shadow-md p-4 rounded-md flex-1">
           <ul className="flex justify-between">
             <li>
               <span className="flex gap-2 items-center">

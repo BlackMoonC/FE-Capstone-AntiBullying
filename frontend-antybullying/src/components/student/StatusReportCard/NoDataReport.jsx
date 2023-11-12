@@ -4,7 +4,7 @@ export default function index() {
     <>
       <div className="p-2">
         {/* <div className="text-center font-bold">BELUM ADA LAPORAN</div> */}
-        <div className="bg-white p-4 rounded-md flex-1">
+        <div className="bg-white shadow-md p-4 rounded-md flex-1">
           <ul className="flex justify-between">
             <li>
               <span className="flex gap-2 items-center">

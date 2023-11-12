@@ -6,7 +6,7 @@ function index(props) {
   const { getDetailDataStudent } = handleFunction;
   return (
     <>
-      <div className="list-table flex mx-auto gap-10 bg-white mt-6 p-4 h-fit rounded-md w-1/2">
+      <div className="list-table flex mx-auto gap-10 bg-white shadow-md mt-6 p-4 h-fit rounded-md w-1/2">
         <div className="w-64">
           <img
             src="/img/profile-pic.jpg"
