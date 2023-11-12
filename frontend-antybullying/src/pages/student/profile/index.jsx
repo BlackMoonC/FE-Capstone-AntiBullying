@@ -1,11 +1,12 @@
 import React, {useState, useContext } from 'react'
 import { GlobalContext } from "../../../context/GlobalContext";
 import Modal from "../../../components/student/Modal";
+import ReportDiciplinaryCard from "../../../components/student/ReportDiciplinaryCard";
 
 export default function index() {
   const [modal, setModal] = useState(false);
   const { handleState } = useContext(GlobalContext);
-  const { profileUser } = handleState;
+  const { profileUser, reportDiciplinary} = handleState;
   return (
     <>
       <div className="title">
@@ -59,16 +60,15 @@ export default function index() {
         </form>
       </div>
       {/* SUBCONTENT */}
-      <section>
+
+      <ReportDiciplinaryCard myReport={reportDiciplinary}/>
+
+      {/* <section>
         <hr className="mt-4 w-full border border-slate-400 border-dashed" />
         <div className="status-laporan text-center p-4">
           <p className="font-semibold">Belum Pernah Dapat Surat Peringatan</p>
         </div>
-        {/* <div className="status-laporan bg-white text-center p-4 mb-4 flex justify-between">
-          <p className="font-semibold">SURAT PERINGATAN 1</p>
-          <p className="font-semibold">20 - 08 - 2023</p>
-        </div> */}
-      </section>
+      </section> */}
       {/* END OF SUBCONTENT */}
     </>
 

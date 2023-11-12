@@ -46,6 +46,7 @@ export const GlobalProvider = () => {
     lokasiKejadian: "",
     deskripsiKejadian: "",
   });
+  const [reportDiciplinary, setReportDiciplinary] = useState(null);
   const [dataStudent, setDataStudent] = useState(null);
   const [listNameStudent, setListNameStudent] = useState(null);
   const [detailDataStudent, setDetailDataStudent] = useState(null);
@@ -91,6 +92,16 @@ export const GlobalProvider = () => {
           })
           .then((res) => {
             setListNameStudent([...res.data.data]);
+          });
+
+        //Get report diciplinary of Student.
+        await axios
+          .get(`${BASE_URL}/api/actions/mine`, {
+            headers: { Authorization: `Bearer ${token}` },
+          })
+          .then((res) => {
+            setReportDiciplinary([...res.data.data]);
+            console.log(reportDiciplinary);
           });
       }
 
@@ -415,7 +426,9 @@ export const GlobalProvider = () => {
     updateStatusReport,
     setUpdateStatusReport,
     fetchStatus,
-    setFetchStatus
+    setFetchStatus,
+    reportDiciplinary,
+    setReportDiciplinary
   };
 
   let handleFunction = {
