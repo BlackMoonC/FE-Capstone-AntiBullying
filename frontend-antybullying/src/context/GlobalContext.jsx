@@ -2,8 +2,8 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { createContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal)
 const Toast = MySwal.mixin({
@@ -278,7 +278,6 @@ export const GlobalProvider = () => {
       event.preventDefault();
       if (inputLogin.nomorInduk.length == 10 && profileUser.role == "student") {
         getToken(nomorInduk, kataSandi, role);
-        console.log("tester");
         return navigate("/student/status-report");
       } else if (
         inputLogin.nomorInduk.length == 18 && profileUser.role == "teacher"
