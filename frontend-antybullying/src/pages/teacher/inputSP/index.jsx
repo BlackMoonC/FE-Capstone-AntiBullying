@@ -1,9 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { GlobalContext } from "../../../context/GlobalContext";
+import ProfileCard from "../../../components/teacher/ProfileCard";
+import DropdownButton from "../../../components/teacher/dropdown";
 
 export default function index() {
-  const { handleState } = useContext(GlobalContext);
+  const [diciplinary, setDiciplinary] = useState("index");
+  const { handleState, handleFunction } = useContext(GlobalContext);
   const { detailDataStudent } = handleState;
+  const { handleSendDiciplinaryAction } = handleFunction;
 
   return (
     <>
@@ -37,19 +41,27 @@ export default function index() {
                 </div>
               </div>
             </div>
-            <div className="input-SP mt-8">
+            <div className="input-SP mt-8 w-fit">
               <p className="font-semibold mb-2">Tindakan</p>
-              <button className="bg-[var(--secondary-color)] w-full shadow-md text-white px-14 py-2 rounded-md">
+              
+              {/* <button className="bg-[var(--secondary-color)] w-full shadow-md text-white px-14 py-2 rounded-md">
                 Berikan Surat Peringatan
               </button>
               <button className="bg-white shadow-md text-black w-full mt-5 px-14 py-2 rounded-md">
                 Reset
-              </button>
+              </button> */}
+
+              <DropdownButton
+                inputDropdown={(value) => setDiciplinary(value)}
+              />
+
             </div>
           </div>
           <hr className="mt-4 w-full border border-slate-400 border-dashed" />
           <div className="btn-submit mt-14 flex justify-end">
-            <button className="bg-[var(--secondary-color)] text-white px-14 py-2 rounded-md">
+            <button
+              onClick={() => handleSendDiciplinaryAction(diciplinary)}
+              className="bg-[var(--secondary-color)] text-white px-14 py-2 rounded-md">
               Selesai
             </button>
           </div>

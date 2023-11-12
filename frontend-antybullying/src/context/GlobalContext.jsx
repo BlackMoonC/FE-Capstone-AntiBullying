@@ -5,20 +5,20 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-const MySwal = withReactContent(Swal)
+const MySwal = withReactContent(Swal);
 const Toast = MySwal.mixin({
   toast: true,
-  position: 'top-end',
+  position: "top-end",
   showConfirmButton: false,
   timer: 3000,
   timerProgressBar: true,
   didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-})
+    toast.addEventListener("mouseenter", Swal.stopTimer);
+    toast.addEventListener("mouseleave", Swal.resumeTimer);
+  },
+});
 
-const BASE_URL = "https://antibullying-test.fly.dev"
+const BASE_URL = "https://antibullying-test.fly.dev";
 
 export const GlobalContext = createContext();
 
@@ -120,6 +120,11 @@ export const GlobalProvider = () => {
   useEffect(() => {
     if (fetchStatus) {
       fetchData();
+      if (token) {
+        Cookies.get("roleUser") == "student"
+          ? navigate("student/status-report")
+          : navigate("teacher");
+      }
     }
     setFetchStatus(false);
   }, [fetchStatus, setFetchStatus]);
@@ -145,7 +150,7 @@ export const GlobalProvider = () => {
       })
       .then((res) => {
         // console.log(res.data.data);
-        setUpdateStatusReport({...updateStatusReport, id:id});
+        setUpdateStatusReport({ ...updateStatusReport, id: id });
         setDetailReport({ ...res.data.data });
       });
   };
@@ -178,16 +183,20 @@ export const GlobalProvider = () => {
       text: "Apakah kamu yakin ingin mengirim laporan ini?",
       icon: "question",
       showCancelButton: true,
-      confirmButtonText: 'Iya',
-      cancelButtonText: 'Tidak',
-      focusCancel:true,
+      confirmButtonText: "Iya",
+      cancelButtonText: "Tidak",
+      focusCancel: true,
       customClass: {
-        confirmButton: 'bg-[var(--primary-color)] text-black',
-      }
-    }).then(async(result) => {
-      if(result.isConfirmed){
-        let { nomorIndukPelaku, waktuKejadian, lokasiKejadian, deskripsiKejadian } =
-          sendReport;
+        confirmButton: "bg-[var(--primary-color)] text-black",
+      },
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        let {
+          nomorIndukPelaku,
+          waktuKejadian,
+          lokasiKejadian,
+          deskripsiKejadian,
+        } = sendReport;
         try {
           // console.log(sendReport);
           await axios
@@ -209,51 +218,94 @@ export const GlobalProvider = () => {
                 deskripsiKejadian: "",
               });
               MySwal.fire({
-                icon:'success',
+                icon: "success",
                 title: res.data.pesan,
                 customClass: {
-                  confirmButton: "bg-[var(--primary-color)]"
-                }
-              })
+                  confirmButton: "bg-[var(--primary-color)]",
+                },
+              });
             })
             .catch((err) => {
               console.log(err);
               MySwal.fire({
-                icon:'error',
+                icon: "error",
                 title: err.response.data.error.pesan,
-              })
+              });
             });
           // setFetchStatus(true);
         } catch (e) {
           console.log(e);
         }
       }
-    })
+    });
   };
 
   const handleAPIChangePassword = async (form) => {
-    const {currentPassword, newPassword, confirmPassword} = form;
+    const { currentPassword, newPassword, confirmPassword } = form;
     const token = Cookies.get("token");
-    console.log(currentPassword);
-    await axios.post(`${BASE_URL}/api/users/change-password`,
-    {
-      kataSandiLama: currentPassword,
-      kataSandiBaru: newPassword,
-      konfirmasiKataSandi: confirmPassword
+    await axios
+      .post(
+        `${BASE_URL}/api/users/change-password`,
+        {
+          kataSandiLama: currentPassword,
+          kataSandiBaru: newPassword,
+          konfirmasiKataSandi: confirmPassword,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((res) => {
+        console.log(res.data.pesan);
+      })
+      .catch((err) => {
+        console.log(err.message);
+        // return(err.data.pesan);
+      });
+  };
+
+  const handleSendDiciplinaryAction = async (message) => {
+    try {
+      const idSiswa = detailDataStudent.siswa.nomorInduk;
+      if (message !== "index") {
+        await axios
+          .post(
+            `${BASE_URL}/api/actions/${idSiswa}`,
+            {
+              tindakan: message,
+            },
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          )
+          .then((res) => {
+            MySwal.fire({
+              icon: "success",
+              title: res.data.pesan,
+              customClass: {
+                confirmButton: "bg-[var(--primary-color)]",
+              },
+            });
+          })
+          .catch((err) => {
+            MySwal.fire({
+              icon: "error",
+              title: err.response.data.error.pesan,
+            });
+          });
+      } else {
+        MySwal.fire({
+          icon: "error",
+          title: "Tolong masukkan aksi tindakan",
+        });
+      }
+    } catch (e) {
+      console.log(e);
     }
-    ,{
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    .then((res) => {
-      console.log(res.data.pesan) 
-    }).catch((err) => {
-      console.log(err.message);
-      // return(err.data.pesan);
-    });
-  }
+  };
 
   const getToken = async (nomorInduk, kataSandi, role) => {
-    try{
+    try {
       const result = (
         await axios.post(`${BASE_URL}/api/auth/login`, {
           nomorInduk,
@@ -264,10 +316,10 @@ export const GlobalProvider = () => {
       Cookies.set("roleUser", role, { expires: 1 });
       Cookies.set("token", result.token, { expires: 1 });
       setFetchStatus(true);
-      return {message: result.pesan, icon: 'success'};
-    }catch(error){
-      const message = error.response.data.error.pesan
-      return {message: message, icon: 'error'};
+      return { message: result.pesan, icon: "success" };
+    } catch (error) {
+      const message = error.response.data.error.pesan;
+      return { message: message, icon: "error" };
     }
   };
 
@@ -277,18 +329,33 @@ export const GlobalProvider = () => {
     try {
       event.preventDefault();
       if (inputLogin.nomorInduk.length == 10 && profileUser.role == "student") {
-        getToken(nomorInduk, kataSandi, role);
-        return navigate("/student/status-report");
+        const response  = await getToken(nomorInduk, kataSandi, role);
+        console.log(response);
+        Toast.fire({
+          icon: response.icon,
+          title: response.message,
+          customClass: {
+            confirmButton: "bg-[var(--primary-color)]"
+          }
+        }).then(() => {
+          return navigate("/student/status-report");
+        })
       } else if (
         inputLogin.nomorInduk.length == 18 && profileUser.role == "teacher"
       ) {
-        getToken(nomorInduk, kataSandi, role);
-        return navigate("/teacher");
+        const response  = await getToken(nomorInduk, kataSandi, role);
+        console.log(response);
+        Toast.fire({
+          icon: response.icon,
+          title: response.message
+        }).then(() => {
+          return navigate("/teacher");
+        })
       } else {
         Toast.fire({
-          icon: 'error',
-          title: "Login gagal. Inputan tidak diterima."
-        })
+          icon: "error",
+          title: "Login gagal. Inputan tidak diterima.",
+        });
       }
     } catch (e) {
       console.log(e);
@@ -307,12 +374,23 @@ export const GlobalProvider = () => {
   };
 
   const logout = () => {
-    Cookies.remove("token");
-    Cookies.remove("roleUser");
-    clearData();
-    return profileUser.role == "student"
-      ? navigate("/student/login")
-      : navigate("/teacher/login");
+    MySwal.fire({
+      title: "Konfirmasi logout",
+      text: "Apakah kamu yakin ingin keluar?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: 'Iya',
+      cancelButtonText:'Tidak'
+    }).then((result) => {
+      if(result.isConfirmed){
+        Cookies.remove("token");
+        Cookies.remove("roleUser");
+        clearData();
+        return profileUser.role == "student"
+          ? navigate("/student/login")
+          : navigate("/teacher/login");
+      }
+    })
   };
 
   let handleState = {
@@ -341,6 +419,7 @@ export const GlobalProvider = () => {
   };
 
   let handleFunction = {
+    handleSendDiciplinaryAction,
     handleAPIChangePassword,
     handleSubmitLogin,
     handleSubmitSendReport,
