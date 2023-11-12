@@ -9,9 +9,10 @@ export default function login() {
   const { handleSubmitLogin } = handleFunction;
   return (
     <IsStudentLoginPage>
-      <section className="flex flex-col md:flex-row md:bg-[url('assets/img/bg_students.png')] bg-cover bg-center h-screen">
-        <div className="left lg:w-[50vw] lg:h-full md:pt-72 md:block hidden">
-          <div className="w-full px-10">
+      {/* <section className="flex flex-col md:flex-row md:bg-[url('assets/img/bg_students.png')] bg-cover bg-center h-screen"> */}
+      <section className="flex flex-col md:flex-row h-screen">
+        <div className="left lg:w-[60vw] my-auto mx-10 md:block hidden">
+          <div className="w-full md:bg-[url('assets/img/bg_students.png')] bg-cover bg-center lg:h-full rounded-3xl px-10 py-60 text-white bg-gray-600">
             <p className="font-bold text-6xl">Hello, </p>{" "}
             <p className="font-bold text-6xl">Student!</p>
             <p className="pt-6 pe-14 font-semibold text-xl">
@@ -21,13 +22,14 @@ export default function login() {
             </p>
           </div>
         </div>
-        <div className="right md:w-[50vw] h-full bg-red-600/60 flex flex-col items-center justify-center">
+        <div className="right md:w-[40vw] h-full bg-red-600/90 flex flex-col items-center justify-center">
           <div className="mt-12 mx-3 mb-5 md:mt-50">
-            <p className="font-semibold text-3xl text-white text-center mb-10">
-              AntyBullying
-            </p>
-            <p className="font-semibold text-xl text-white mb-2">Role : </p>
-            <ButtonSelection hero="student" />
+            <span className="flex justify-center items-center gap-5 mb-14">
+              <img className="w-20" src="/img/logo-web.png" alt="logo-antybullying" />
+              <p className="font-semibold text-3xl text-white">
+                AntyBullying
+              </p>
+            </span>
             <p className="font-semibold mt-4 mb-2 text-white">
               Login dan silahkan masukkan data disini :{" "}
             </p>
@@ -61,6 +63,7 @@ export default function login() {
                 Login
               </button>
             </form>
+            <ButtonSelection hero="student" />
           </div>
         </div>
       </section>
