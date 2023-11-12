@@ -44,7 +44,7 @@ export default function index() {
             <div className="input-SP mt-8 w-fit">
               <p className="font-semibold mb-2">Tindakan</p>
               <DropdownButton
-                inputDropdown={(value) => setDiciplinary(value)}
+                inputDropdown={(message) => setDiciplinary(message)}
               />
             </div>
           </div>
