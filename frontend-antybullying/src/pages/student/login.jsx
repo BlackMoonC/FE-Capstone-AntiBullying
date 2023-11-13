@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import ButtonSelection from "../../components/login/Button/Selection";
 import { GlobalContext } from "../../context/GlobalContext";
 import { IsStudentLoginPage } from "../../routes/ProtectedRoute";
@@ -25,10 +25,12 @@ export default function login() {
         <div className="right md:w-[40vw] h-full bg-red-600/90 flex flex-col items-center justify-center">
           <div className="mt-12 mx-3 mb-5 md:mt-50">
             <span className="flex justify-center items-center gap-5 mb-14">
-              <img className="w-20" src="/img/logo-web.png" alt="logo-antybullying" />
-              <p className="font-semibold text-3xl text-white">
-                AntyBullying
-              </p>
+              <img
+                className="w-20"
+                src="/img/logo-web.png"
+                alt="logo-antybullying"
+              />
+              <p className="font-semibold text-3xl text-white">AntyBullying</p>
             </span>
             <p className="font-semibold mt-4 mb-2 text-white">
               Login dan silahkan masukkan data disini :{" "}
@@ -58,8 +60,7 @@ export default function login() {
               />
               <button
                 type="submit"
-                className="block bg-[var(--primary-color)] mt-4 text-center w-full py-4 text-white rounded-md"
-              >
+                className="block bg-[var(--primary-color)] mt-4 text-center w-full py-4 text-white rounded-md">
                 Login
               </button>
             </form>
