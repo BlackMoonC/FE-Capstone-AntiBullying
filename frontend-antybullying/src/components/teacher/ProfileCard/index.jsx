@@ -6,7 +6,7 @@ function index(props) {
   const { getDetailDataStudent } = handleFunction;
   return (
     <>
-      <div className="list-table flex mx-auto gap-10 bg-white mt-6 p-4 h-fit rounded-md w-1/2">
+      <div className="list-table flex mx-auto gap-10 bg-white shadow-md mt-6 p-4 h-fit rounded-md w-1/2">
         <div className="w-64">
           <img
             src="/img/profile-pic.jpg"
@@ -32,7 +32,7 @@ function index(props) {
             <p>Email : {props.surel}</p>
           </div>
           <button onClick={getDetailDataStudent(props.nomorInduk, props.move)} className="bg-[var(--secondary-color)] shadow-md text-white mt-5 px-14 py-2 rounded-md">
-            Input Surat Peringatan
+            Input Tindakan
           </button>
         </div>
       </div>

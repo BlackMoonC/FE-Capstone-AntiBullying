@@ -46,6 +46,7 @@ export const GlobalProvider = () => {
     lokasiKejadian: "",
     deskripsiKejadian: "",
   });
+  const [reportDiciplinary, setReportDiciplinary] = useState(null);
   const [dataStudent, setDataStudent] = useState(null);
   const [listNameStudent, setListNameStudent] = useState(null);
   const [detailDataStudent, setDetailDataStudent] = useState(null);
@@ -92,6 +93,16 @@ export const GlobalProvider = () => {
           .then((res) => {
             setListNameStudent([...res.data.data]);
           });
+
+        //Get report diciplinary of Student.
+        await axios
+          .get(`${BASE_URL}/api/actions/mine`, {
+            headers: { Authorization: `Bearer ${token}` },
+          })
+          .then((res) => {
+            setReportDiciplinary([...res.data.data]);
+            console.log(reportDiciplinary);
+          });
       }
 
       if (role === "teacher") {
@@ -120,13 +131,12 @@ export const GlobalProvider = () => {
   useEffect(() => {
     if (fetchStatus) {
       fetchData();
-      // if (token) {
-      //   Cookies.get("roleUser") == "student"
-      //     ? navigate("student/status-report")
-      //     : navigate("teacher");
-      // }
+      if (token) {
+        Cookies.get("roleUser") == "student"
+          ? navigate("student/status-report")
+          : navigate("teacher");
+      }
     }
-
     setFetchStatus(false);
   }, [fetchStatus, setFetchStatus]);
 
@@ -167,9 +177,24 @@ export const GlobalProvider = () => {
           { status },
           { headers: { Authorization: `Bearer ${token}` } }
         )
-        .then(() => {
-          console.log("Laporan berhasil diupdate");
-          setDetailReport(null);
+        .then((res) => {
+          MySwal.fire({
+            icon: "success",
+            title: res.data.pesan,
+            customClass: {
+              confirmButton: "bg-[var(--primary-color)]",
+            },
+          }).then(() => {
+            setDetailReport(null);
+            window.location.reload(true);
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          MySwal.fire({
+            icon: "error",
+            title: err.response.data.error.pesan,
+          });
         });
     } catch (e) {
       console.log(e);
@@ -416,6 +441,10 @@ export const GlobalProvider = () => {
     setDetailReport,
     updateStatusReport,
     setUpdateStatusReport,
+    fetchStatus,
+    setFetchStatus,
+    reportDiciplinary,
+    setReportDiciplinary,
   };
 
   let handleFunction = {

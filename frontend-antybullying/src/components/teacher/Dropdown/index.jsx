@@ -29,7 +29,7 @@ function index({ inputDropdown }) {
       <button
         type="button"
         onClick={() => setShow(!show)}
-        className="flex bg-[var(--secondary-color)] shadow-md text-white w-full px-14 py-2 rounded-md">
+        className="flex justify-between mb-3 bg-[var(--secondary-color)] shadow-md text-white w-full px-14 py-2 rounded-md">
         <p className="mr-5">{tindakan}</p>
         {show !== true ? (
           <svg

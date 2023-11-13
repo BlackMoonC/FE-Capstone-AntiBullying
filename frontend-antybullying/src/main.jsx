@@ -21,7 +21,6 @@ import ReportStudent from './pages/student/sendReport'
 import ProfileStudent from './pages/student/profile'
 import StatusReport from './pages/student/statusReport'
 import { GlobalProvider } from "./context/GlobalContext";
-import { IsStudentLoginPage, IsTeacherLoginPage } from "./routes/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -74,11 +73,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/teacher/login",
-        element:<IsTeacherLoginPage> <LoginTeacher /> </IsTeacherLoginPage>,
+        element: <LoginTeacher />
       },
       {
         path: "/student/login",
-        element: <IsStudentLoginPage> <LoginStudent /> </IsStudentLoginPage>,
+        element: <LoginStudent />
       },
     ],
   }
