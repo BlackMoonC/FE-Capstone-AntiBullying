@@ -3,7 +3,8 @@ export default function index() {
   return (
     <>
       <div className="p-2">
-        <div className="bg-white p-4 rounded-md flex-1">
+        {/* <div className="text-center font-bold">BELUM ADA LAPORAN</div> */}
+        <div className="bg-white shadow-md p-4 rounded-md flex-1">
           <ul className="flex justify-between">
             <li>
               <span className="flex gap-2 items-center">
@@ -18,7 +19,6 @@ export default function index() {
                 </svg>
                 <p className="font-semibold">Tanggal Dilaporkan</p>
               </span>
-              {/* <p className="ps-7">Data Belum Tersedia</p> */}
               <div className="bg-slate-300 ms-7 mt-2 w-44 h-4 rounded-sm animate-pulse"></div>
             </li>
             <li>
@@ -36,7 +36,6 @@ export default function index() {
                 </svg>
                 <p className="font-semibold">Nama Pembully</p>
               </span>
-              {/* <p className="ps-7">Data Belum Tersedia</p> */}
               <div className="bg-slate-300 ms-7 mt-2 w-44 h-4 rounded-sm animate-pulse"></div>
             </li>
             <li>
@@ -52,7 +51,6 @@ export default function index() {
                 </svg>
                 <p className="font-semibold">Status</p>
               </span>
-              {/* <p className="ps-7">Data Belum Tersedia</p> */}
               <div className="bg-slate-300 ms-7 mt-2 w-44 h-4 rounded-sm animate-pulse"></div>
             </li>
           </ul>

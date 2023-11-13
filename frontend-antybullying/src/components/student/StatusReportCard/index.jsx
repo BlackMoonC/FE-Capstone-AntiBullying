@@ -1,8 +1,11 @@
+import moment from "moment";
+import React from "react";
+
 export default function index(props) {
   return (
     <>
       <div className="p-2">
-        <div className="bg-white p-4 rounded-md flex-1">
+        <div className="bg-white shadow-md p-4 rounded-md flex-1">
           <ul className="flex justify-between">
             <li>
               <span className="flex gap-2 items-center">
@@ -17,7 +20,11 @@ export default function index(props) {
                 </svg>
                 <p className="font-semibold">Tanggal Dilaporkan</p>
               </span>
-              <p className="ps-7">{props.waktuDilaporkan}</p>
+              <p className="ps-7">
+                {props.waktuDilaporkan !== undefined
+                  ? moment(props.waktuDilaporkan).format("MMMM Do YYYY, h:mm a")
+                  : "Belum ada laporan"}
+              </p>
             </li>
             <li>
               <span className="flex gap-2 items-center">
@@ -32,9 +39,13 @@ export default function index(props) {
                     d="M5.5 3.5a2 2 0 100 4 2 2 0 000-4zM2 5.5a3.5 3.5 0 115.898 2.549 5.507 5.507 0 013.034 4.084.75.75 0 11-1.482.235 4.001 4.001 0 00-7.9 0 .75.75 0 01-1.482-.236A5.507 5.507 0 013.102 8.05 3.49 3.49 0 012 5.5zM11 4a.75.75 0 100 1.5 1.5 1.5 0 01.666 2.844.75.75 0 00-.416.672v.352a.75.75 0 00.574.73c1.2.289 2.162 1.2 2.522 2.372a.75.75 0 101.434-.44 5.01 5.01 0 00-2.56-3.012A3 3 0 0011 4z"
                   />
                 </svg>
-                <p className="font-semibold">Nama Pembully</p>
+                <p className="font-semibold">Pelaku Bullying</p>
               </span>
-              <p className="ps-7">{props.namaPelaku}</p>
+              <p className="ps-7">
+                {props.namaPelaku !== undefined
+                  ? props.namaPelaku
+                  : "Belum ada laporan"}
+              </p>
             </li>
             <li>
               <span className="flex gap-2 items-center">
@@ -57,12 +68,14 @@ export default function index(props) {
                     ? "bg-blue-300"
                     : props.status == "selesai"
                     ? "bg-green-300"
-                    : props.status == "dibatalkan" 
-                    ? "bg-red-300" 
+                    : props.status == "dibatalkan"
+                    ? "bg-red-300"
                     : ""
                 } px-2 rounded-lg mt-1 w-40`}
               >
-                {props.status}
+                {props.status !== undefined
+                  ? props.status
+                  : "Belum ada laporan"}
               </p>
             </li>
           </ul>

@@ -11,7 +11,7 @@ export default function index() {
     <>
       <div className="title">
         <p className="font-semibold text-3xl">Profile Saya</p>
-        <p>Ubah Profile sesuai keinginanmu dan Update Password</p>
+        <p className="font-semibold">Bio Data Diri</p>
       </div>
       <div className="flex gap-8 p-4">
         <div className="photo w-48 text-center mt-10">

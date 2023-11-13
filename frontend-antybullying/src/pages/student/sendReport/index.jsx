@@ -84,7 +84,7 @@ export default function index() {
         </div>
         <div className="form-group mb-8">
           <label htmlFor="deskripsi" className="font-semibold">
-            Deskripsi Kejadian <span className="text-red-700">*</span>
+            Kronologis Kejadian <span className="text-red-700">*</span>
           </label>
           <textarea
             onChange={(e) => {

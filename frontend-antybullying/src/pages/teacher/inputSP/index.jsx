@@ -19,7 +19,7 @@ export default function index() {
       {detailDataStudent !== null && (
         <>
           <div className="flex gap-4 w-full">
-            <div className="list-table flex gap-10 bg-white mt-10 p-4 h-fit rounded-md w-fit">
+            <div className="list-table flex gap-10 bg-white shadow-md mt-10 p-4 h-fit rounded-md w-fit">
               <img
                 src="/img/profile-pic.jpg"
                 alt="pic-students"
@@ -43,9 +43,18 @@ export default function index() {
             </div>
             <div className="input-SP mt-8 w-fit">
               <p className="font-semibold mb-2">Tindakan</p>
+              
+              {/* <button className="bg-[var(--secondary-color)] w-full shadow-md text-white px-14 py-2 rounded-md">
+                Berikan Surat Peringatan
+              </button>
+              <button className="bg-white shadow-md text-black w-full mt-5 px-14 py-2 rounded-md">
+                Reset
+              </button> */}
+
               <DropdownButton
                 inputDropdown={(message) => setDiciplinary(message)}
               />
+
             </div>
           </div>
           <hr className="mt-4 w-full border border-slate-400 border-dashed" />
@@ -58,39 +67,6 @@ export default function index() {
           </div>
         </>
       )}
-
-      {/* {detailDataStudent !== null && (
-        <>
-          <div className="flex items-start w-full">
-            {detailDataStudent !== null && (
-              <ProfileCard
-                key={detailDataStudent.siswa.nomorInduk}
-                nama={detailDataStudent.siswa.nama}
-                nomorInduk={detailDataStudent.siswa.nomorInduk}
-                alamat={detailDataStudent.siswa.alamat}
-                namaAyah={detailDataStudent.orangTua.namaAyah}
-                namaIbu={detailDataStudent.orangTua.namaIbu}
-                move={true}
-              />
-            )}
-            <div className="input-SP mt-8">
-              <p className="font-semibold mb-2">Tindakan</p>
-              <button className="bg-[var(--secondary-color)] w-full shadow-md text-white px-14 py-2 rounded-md">
-                Tambah Surat Peringatan
-              </button>
-              <button className="bg-white shadow-md text-black w-full mt-5 px-14 py-2 rounded-md">
-                Reset
-              </button>
-            </div>
-          </div>
-          <hr className="mt-4 w-full border border-slate-400 border-dashed" />
-          <div className="btn-submit mt-14 flex justify-end">
-            <button className="bg-[var(--secondary-color)] text-white px-14 py-2 rounded-md">
-              Selesai
-            </button>
-          </div>
-        </>
-      )} */}
     </>
   );
 }

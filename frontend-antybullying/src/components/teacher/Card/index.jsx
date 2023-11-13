@@ -5,7 +5,7 @@ import logo from '../../../assets/img/profile-pic.jpg'
 function index(props) {
   return (
     <>
-      <div className="card text-left flex gap-4 items-center mb-2 bg-white p-4 rounded-md">
+      <div className="card text-left flex gap-4 items-center mb-2 bg-white shadow-md p-4 rounded-md">
         <img
           src={logo}
           alt="pic-students"
@@ -13,8 +13,8 @@ function index(props) {
         />
         <span className="w-64">
           <p>Nama : {props.name}</p>
+          <p>No Induk : {props.nomorInduk}</p>
           <p>TTL : {props.ttl}</p>
-          <p>Alamat : {props.address}</p>
         </span>
       </div>
     </>

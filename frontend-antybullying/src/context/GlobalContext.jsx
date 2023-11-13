@@ -46,6 +46,7 @@ export const GlobalProvider = () => {
     lokasiKejadian: "",
     deskripsiKejadian: "",
   });
+  const [reportDiciplinary, setReportDiciplinary] = useState(null);
   const [dataStudent, setDataStudent] = useState(null);
   const [listNameStudent, setListNameStudent] = useState(null);
   const [detailDataStudent, setDetailDataStudent] = useState(null);
@@ -92,6 +93,16 @@ export const GlobalProvider = () => {
           .then((res) => {
             setListNameStudent([...res.data.data]);
           });
+
+        //Get report diciplinary of Student.
+        await axios
+          .get(`${BASE_URL}/api/actions/mine`, {
+            headers: { Authorization: `Bearer ${token}` },
+          })
+          .then((res) => {
+            setReportDiciplinary([...res.data.data]);
+            console.log(reportDiciplinary);
+          });
       }
 
       if (role === "teacher") {
@@ -120,13 +131,12 @@ export const GlobalProvider = () => {
   useEffect(() => {
     if (fetchStatus) {
       fetchData();
-      // if (token) {
-      //   Cookies.get("roleUser") == "student"
-      //     ? navigate("student/status-report")
-      //     : navigate("teacher");
-      // }
+      if (token) {
+        Cookies.get("roleUser") == "student"
+          ? navigate("student/status-report")
+          : navigate("teacher");
+      }
     }
-
     setFetchStatus(false);
   }, [fetchStatus, setFetchStatus]);
 
@@ -330,29 +340,28 @@ export const GlobalProvider = () => {
     try {
       event.preventDefault();
       if (inputLogin.nomorInduk.length == 10 && profileUser.role == "student") {
-        const response = await getToken(nomorInduk, kataSandi, role);
+        const response  = await getToken(nomorInduk, kataSandi, role);
         console.log(response);
         Toast.fire({
           icon: response.icon,
           title: response.message,
           customClass: {
-            confirmButton: "bg-[var(--primary-color)]",
-          },
+            confirmButton: "bg-[var(--primary-color)]"
+          }
         }).then(() => {
           return navigate("/student/status-report");
-        });
+        })
       } else if (
-        inputLogin.nomorInduk.length == 18 &&
-        profileUser.role == "teacher"
+        inputLogin.nomorInduk.length == 18 && profileUser.role == "teacher"
       ) {
-        const response = await getToken(nomorInduk, kataSandi, role);
+        const response  = await getToken(nomorInduk, kataSandi, role);
         console.log(response);
         Toast.fire({
           icon: response.icon,
-          title: response.message,
+          title: response.message
         }).then(() => {
           return navigate("/teacher");
-        });
+        })
       } else {
         Toast.fire({
           icon: "error",
@@ -381,10 +390,10 @@ export const GlobalProvider = () => {
       text: "Apakah kamu yakin ingin keluar?",
       icon: "question",
       showCancelButton: true,
-      confirmButtonText: "Iya",
-      cancelButtonText: "Tidak",
+      confirmButtonText: 'Iya',
+      cancelButtonText:'Tidak'
     }).then((result) => {
-      if (result.isConfirmed) {
+      if(result.isConfirmed){
         Cookies.remove("token");
         Cookies.remove("roleUser");
         clearData();
@@ -392,7 +401,7 @@ export const GlobalProvider = () => {
           ? navigate("/student/login")
           : navigate("/teacher/login");
       }
-    });
+    })
   };
 
   let handleState = {
@@ -416,6 +425,10 @@ export const GlobalProvider = () => {
     setDetailReport,
     updateStatusReport,
     setUpdateStatusReport,
+    fetchStatus,
+    setFetchStatus,
+    reportDiciplinary,
+    setReportDiciplinary
   };
 
   let handleFunction = {
