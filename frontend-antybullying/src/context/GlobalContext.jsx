@@ -64,10 +64,11 @@ export const GlobalProvider = () => {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
-          const { nomorInduk, nama, tempatTanggalLahir, alamat } =
+          const { nomorInduk, waliKelas, nama, tempatTanggalLahir, alamat } =
             res.data.data;
           setProfileUser({
             ...profileUser,
+            waliKelas: waliKelas,
             nomorInduk: nomorInduk,
             nama: nama,
             TTL: tempatTanggalLahir,
