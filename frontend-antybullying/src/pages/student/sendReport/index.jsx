@@ -35,7 +35,7 @@ export default function index() {
             type="text"
             required
           >
-            <option disabled>
+            <option selected value={""}>
               Siapa yang melakukan tindakan pembullyan ...
             </option>
             {listNameStudent !== null &&
