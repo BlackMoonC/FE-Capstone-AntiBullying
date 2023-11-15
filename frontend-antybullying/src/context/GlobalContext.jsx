@@ -50,7 +50,8 @@ export const GlobalProvider = () => {
   const [dataStudent, setDataStudent] = useState(null);
   const [listNameStudent, setListNameStudent] = useState(null);
   const [detailDataStudent, setDetailDataStudent] = useState(null);
-  const [listAllReport, setListAllReport] = useState(null);
+  const [listAllReport, setListAllReport] = useState([]);
+  const [loadingListAllReport, setLoadingListAllReport] = useState(true);
   const [detailReport, setDetailReport] = useState(null);
   const [updateStatusReport, setUpdateStatusReport] = useState({
     id: "",
@@ -116,14 +117,19 @@ export const GlobalProvider = () => {
           });
 
         //Get all data report that sending by student.
-        await axios
-          .get(`${BASE_URL}/api/reports`, {
-            headers: { Authorization: `Bearer ${token}` },
-          })
-          .then((res) => {
-            setListAllReport([...res.data.data]);
-            // console.log(listAllReport);
-          });
+        try {
+          await axios
+            .get(`${BASE_URL}/api/reports`, {
+              headers: { Authorization: `Bearer ${token}` },
+            })
+            .then((res) => {
+              setListAllReport(res.data.data);
+            });
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setLoadingListAllReport(false);
+        }
       }
     }
   };
@@ -155,6 +161,7 @@ export const GlobalProvider = () => {
   };
 
   const getDetailReport = (id) => async () => {
+    console.log(id);
     await axios
       .get(`${BASE_URL}/api/reports/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -445,6 +452,7 @@ export const GlobalProvider = () => {
     setFetchStatus,
     reportDiciplinary,
     setReportDiciplinary,
+    loadingListAllReport,
   };
 
   let handleFunction = {
