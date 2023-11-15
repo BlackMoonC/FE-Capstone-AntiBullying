@@ -19,7 +19,7 @@ export default function index() {
 
   return (
     <>
-      <div className="title">
+      <div className="title mb-8">
         <p className="font-semibold text-3xl">Daftar Laporan Kasus</p>
         <p>
           Laporan kasus yang masuk dengan status masih proses, sudah selesai
@@ -27,8 +27,8 @@ export default function index() {
         </p>
       </div>
 
-      <div className="list-table bg-white h-96 mt-8 p-4 rounded-md overflow-y-scroll">
-        <Filters inputDropdown={(value) => sendValueStatus(value)} />
+      <Filters inputDropdown={(value) => sendValueStatus(value)} />
+      <div className="list-table bg-white h-96 p-4 rounded-md overflow-y-scroll">
         <TableStack statusFromFilter={filterByStatus} />
         {/* <TableListReport /> */}
       </div>
