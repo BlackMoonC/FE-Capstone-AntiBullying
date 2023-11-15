@@ -6,7 +6,7 @@ import Searching from "../../../components/teacher/Searching";
 
 export default function index() {
   const { handleState, handleFunction } = useContext(GlobalContext);
-  const { dataStudent, detailDataStudent } = handleState;
+  const { dataStudent, detailDataStudent, diciplinaryStudent } = handleState;
   const { getDetailDataStudent } = handleFunction;
 
   const [search, setSearch] = useState("");
@@ -58,6 +58,7 @@ export default function index() {
           namaIbu={detailDataStudent.orangTua.namaIbu}
           telepon={detailDataStudent.orangTua.telepon}
           surel={detailDataStudent.orangTua.surel}
+          diciplinaryHistory={diciplinaryStudent}
           move={true}
         />
       )}

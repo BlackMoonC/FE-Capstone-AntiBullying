@@ -19,6 +19,7 @@ const Toast = MySwal.mixin({
 });
 
 const BASE_URL = "https://antibullying-test.fly.dev";
+// const BASE_URL = "https://antibullying.fly.dev";
 
 export const GlobalContext = createContext();
 
@@ -50,7 +51,8 @@ export const GlobalProvider = () => {
   const [dataStudent, setDataStudent] = useState(null);
   const [listNameStudent, setListNameStudent] = useState(null);
   const [detailDataStudent, setDetailDataStudent] = useState(null);
-  const [listAllReport, setListAllReport] = useState([]);
+  const [diciplinaryStudent, setDiciplinaryStudent] = useState(null);
+  const [listAllReport, setListAllReport] = useState(null);
   const [loadingListAllReport, setLoadingListAllReport] = useState(true);
   const [detailReport, setDetailReport] = useState(null);
   const [updateStatusReport, setUpdateStatusReport] = useState({
@@ -65,10 +67,11 @@ export const GlobalProvider = () => {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
-          const { nomorInduk, nama, tempatTanggalLahir, alamat } =
+          const { nomorInduk, waliKelas, nama, tempatTanggalLahir, alamat } =
             res.data.data;
           setProfileUser({
             ...profileUser,
+            waliKelas: waliKelas,
             nomorInduk: nomorInduk,
             nama: nama,
             TTL: tempatTanggalLahir,
@@ -137,11 +140,13 @@ export const GlobalProvider = () => {
   useEffect(() => {
     if (fetchStatus) {
       fetchData();
-      if (token) {
-        Cookies.get("roleUser") == "student"
-          ? navigate("student/status-report")
-          : navigate("teacher");
-      }
+      //Bagian dibawah ini hapus aja Mas Cakra karena udh 
+      //dihandle sama Protected Route jadi Aman tanpa syntax dibawah ini
+      // if (token) {
+      //   Cookies.get("roleUser") == "student"
+      //     ? navigate("student/status-report")
+      //     : navigate("teacher");
+      // }
     }
     setFetchStatus(false);
   }, [fetchStatus, setFetchStatus]);
@@ -155,6 +160,17 @@ export const GlobalProvider = () => {
         // console.log(res.data.data);
         setDetailDataStudent({ ...res.data.data });
       });
+    
+      await axios
+      .get(`${BASE_URL}/api/actions/${nomorInduk}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        setDiciplinaryStudent([ ...res.data.data ]);
+        console.log(detailDataStudent);
+      });
+    
     if (move === true) {
       navigate("/teacher/Input-Surat-Peringatan");
     }
@@ -452,6 +468,8 @@ export const GlobalProvider = () => {
     setFetchStatus,
     reportDiciplinary,
     setReportDiciplinary,
+    diciplinaryStudent,
+    setDiciplinaryStudent
     loadingListAllReport,
   };
 

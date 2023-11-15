@@ -1,4 +1,4 @@
-import React, {useState, useContext } from 'react'
+import React, { useState, useContext } from "react";
 import { GlobalContext } from "../../../context/GlobalContext";
 import Modal from "../../../components/student/Modal";
 import ReportDiciplinaryCard from "../../../components/student/ReportDiciplinaryCard";
@@ -6,7 +6,7 @@ import ReportDiciplinaryCard from "../../../components/student/ReportDiciplinary
 export default function index() {
   const [modal, setModal] = useState(false);
   const { handleState } = useContext(GlobalContext);
-  const { profileUser, reportDiciplinary} = handleState;
+  const { profileUser, reportDiciplinary } = handleState;
   return (
     <>
       <div className="title">
@@ -24,44 +24,63 @@ export default function index() {
             <h4>{profileUser !== null && profileUser.nama}</h4>
             <p>{profileUser !== null && profileUser.nomorInduk}</p>
           </div>
-            <button onClick={() => setModal(true)} className="bg-[var(--primary-color)] text-white px-4 py-2 rounded-md">
-              Ubah Password
-            </button>
-            <Modal
+          <button
+            onClick={() => setModal(true)}
+            className="bg-[var(--primary-color)] text-white px-4 py-2 rounded-md">
+            Ubah Password
+          </button>
+          <Modal
             title="Dialog modal example"
             openModal={modal}
-            closeModal={() => setModal(false)}/>
+            closeModal={() => setModal(false)}
+          />
         </div>
         <form className="bg-white p-8 mt-10 rounded-md flex-1">
+          <div className="form-group mb-4">
+            <label htmlFor="nameWaliKelas" className="font-semibold">
+              Nama Wali Kelas
+            </label>
+            <p className="block w-full bg-[#F1F2F5] rounded-md mt-2 p-2">
+              {profileUser !== null && profileUser.waliKelas}
+            </p>
+          </div>
           <div className="form-group mb-4">
             <label htmlFor="name" className="font-semibold">
               Nama
             </label>
-            <p className="block w-full bg-[#F1F2F5] rounded-md mt-2 p-2">{profileUser !== null && profileUser.nama}</p>
+            <p className="block w-full bg-[#F1F2F5] rounded-md mt-2 p-2">
+              {profileUser !== null && profileUser.nama}
+            </p>
           </div>
           <div className="form-group mb-4">
             <label htmlFor="nis" className="font-semibold">
               Nomor Induk
             </label>
-            <p className="block w-full bg-[#F1F2F5] rounded-md mt-2 p-2">{profileUser !== null && profileUser.nomorInduk}</p>
+            <p className="block w-full bg-[#F1F2F5] rounded-md mt-2 p-2">
+              {profileUser !== null && profileUser.nomorInduk}
+            </p>
           </div>
           <div className="form-group mb-4">
             <label htmlFor="ttl" className="font-semibold">
               Tempat Tanggal Lahir
             </label>
-            <p className="block w-full bg-[#F1F2F5] rounded-md mt-2 p-2">{profileUser !== null && profileUser.TTL}</p>
+            <p className="block w-full bg-[#F1F2F5] rounded-md mt-2 p-2">
+              {profileUser !== null && profileUser.TTL}
+            </p>
           </div>
           <div className="form-group mb-8">
             <label htmlFor="alamat" className="font-semibold">
               Alamat
             </label>
-            <p className="block w-full bg-[#F1F2F5] rounded-md mt-2 p-2">{profileUser !== null && profileUser.alamat}</p>
+            <p className="block w-full bg-[#F1F2F5] rounded-md mt-2 p-2">
+              {profileUser !== null && profileUser.alamat}
+            </p>
           </div>
         </form>
       </div>
       {/* SUBCONTENT */}
 
-      <ReportDiciplinaryCard myReport={reportDiciplinary}/>
+      <ReportDiciplinaryCard myReport={reportDiciplinary} />
 
       {/* <section>
         <hr className="mt-4 w-full border border-slate-400 border-dashed" />
@@ -71,6 +90,5 @@ export default function index() {
       </section> */}
       {/* END OF SUBCONTENT */}
     </>
-
-  )
+  );
 }
