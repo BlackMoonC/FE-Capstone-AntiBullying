@@ -116,7 +116,7 @@ export default function index() {
             <option value="belum diproses">Belum diproses</option>
             <option value="sedang diproses">Sedang diproses</option>
             <option value="selesai">Selesai</option>
-            <option value="dibatalkan">Dibatalkan</option>
+            {/* <option value="dibatalkan">Dibatalkan</option> */}
           </select>
         ) : (
           <div className="bg-slate-300 w-48 h-10 mt-7 absolute right-11 rounded-md animate-pulse"></div>

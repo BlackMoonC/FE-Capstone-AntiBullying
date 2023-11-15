@@ -140,13 +140,6 @@ export const GlobalProvider = () => {
   useEffect(() => {
     if (fetchStatus) {
       fetchData();
-      //Bagian dibawah ini hapus aja Mas Cakra karena udh 
-      //dihandle sama Protected Route jadi Aman tanpa syntax dibawah ini
-      // if (token) {
-      //   Cookies.get("roleUser") == "student"
-      //     ? navigate("student/status-report")
-      //     : navigate("teacher");
-      // }
     }
     setFetchStatus(false);
   }, [fetchStatus, setFetchStatus]);
@@ -469,7 +462,7 @@ export const GlobalProvider = () => {
     reportDiciplinary,
     setReportDiciplinary,
     diciplinaryStudent,
-    setDiciplinaryStudent
+    setDiciplinaryStudent,
     loadingListAllReport,
   };
 
