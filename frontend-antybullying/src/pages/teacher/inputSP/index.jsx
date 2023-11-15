@@ -52,7 +52,7 @@ export default function index() {
               </button> */}
 
               <DropdownButton
-                inputDropdown={(value) => setDiciplinary(value)}
+                inputDropdown={(message) => setDiciplinary(message)}
               />
 
             </div>

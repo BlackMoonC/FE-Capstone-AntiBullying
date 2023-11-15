@@ -66,10 +66,11 @@ export const GlobalProvider = () => {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
-          const { nomorInduk, nama, tempatTanggalLahir, alamat } =
+          const { nomorInduk, waliKelas, nama, tempatTanggalLahir, alamat } =
             res.data.data;
           setProfileUser({
             ...profileUser,
+            waliKelas: waliKelas,
             nomorInduk: nomorInduk,
             nama: nama,
             TTL: tempatTanggalLahir,
@@ -192,9 +193,24 @@ export const GlobalProvider = () => {
           { status },
           { headers: { Authorization: `Bearer ${token}` } }
         )
-        .then(() => {
-          console.log("Laporan berhasil diupdate");
-          setDetailReport(null);
+        .then((res) => {
+          MySwal.fire({
+            icon: "success",
+            title: res.data.pesan,
+            customClass: {
+              confirmButton: "bg-[var(--primary-color)]",
+            },
+          }).then(() => {
+            setDetailReport(null);
+            window.location.reload(true);
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          MySwal.fire({
+            icon: "error",
+            title: err.response.data.error.pesan,
+          });
         });
     } catch (e) {
       console.log(e);
@@ -355,28 +371,29 @@ export const GlobalProvider = () => {
     try {
       event.preventDefault();
       if (inputLogin.nomorInduk.length == 10 && profileUser.role == "student") {
-        const response  = await getToken(nomorInduk, kataSandi, role);
+        const response = await getToken(nomorInduk, kataSandi, role);
         console.log(response);
         Toast.fire({
           icon: response.icon,
           title: response.message,
           customClass: {
-            confirmButton: "bg-[var(--primary-color)]"
-          }
+            confirmButton: "bg-[var(--primary-color)]",
+          },
         }).then(() => {
           return navigate("/student/status-report");
-        })
+        });
       } else if (
-        inputLogin.nomorInduk.length == 18 && profileUser.role == "teacher"
+        inputLogin.nomorInduk.length == 18 &&
+        profileUser.role == "teacher"
       ) {
-        const response  = await getToken(nomorInduk, kataSandi, role);
+        const response = await getToken(nomorInduk, kataSandi, role);
         console.log(response);
         Toast.fire({
           icon: response.icon,
-          title: response.message
+          title: response.message,
         }).then(() => {
           return navigate("/teacher");
-        })
+        });
       } else {
         Toast.fire({
           icon: "error",
@@ -405,10 +422,10 @@ export const GlobalProvider = () => {
       text: "Apakah kamu yakin ingin keluar?",
       icon: "question",
       showCancelButton: true,
-      confirmButtonText: 'Iya',
-      cancelButtonText:'Tidak'
+      confirmButtonText: "Iya",
+      cancelButtonText: "Tidak",
     }).then((result) => {
-      if(result.isConfirmed){
+      if (result.isConfirmed) {
         Cookies.remove("token");
         Cookies.remove("roleUser");
         clearData();
@@ -416,7 +433,7 @@ export const GlobalProvider = () => {
           ? navigate("/student/login")
           : navigate("/teacher/login");
       }
-    })
+    });
   };
 
   let handleState = {

@@ -6,21 +6,22 @@ function index({ inputDropdown }) {
   const optionTindakan = [
     {
       title: "Pemanggilan Orang Tua",
-      value: "pemanggilan orang tua",
+      message: "pemanggilan orang tua",
     },
     {
       title: "Surat Peringatan",
-      value: "surat peringatan",
+      message: "surat peringatan",
     },
     {
       title: "Pemanggilan BK",
-      value: "pemanggilan oleh bimbingan konseling",
+      message: "pemanggilan oleh bimbingan konseling",
     },
   ];
 
   const changeInput = (value) => {
     setTindakan(value.title);
-    inputDropdown(value.value);
+    inputDropdown(value.message);
+    setShow(false);
   };
 
   return (
@@ -64,10 +65,7 @@ function index({ inputDropdown }) {
         <div className="bg-[var(--secondary-color)] shadow-md text-white rounded-md w-full">
           {optionTindakan.map((item, i) => (
             <div
-              onClick={() => {
-                changeInput(item);
-                setShow(false);
-              }}
+              onClick={() => changeInput(item)}
               className="hover:bg-slate-300 w-full rounded-md px-14 py-2 hover:text-black"
               key={i}>
               <h3>{item.title}</h3>
