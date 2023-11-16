@@ -140,7 +140,7 @@ export const GlobalProvider = () => {
   useEffect(() => {
     if (fetchStatus) {
       fetchData();
-      //Bagian dibawah ini hapus aja Mas Cakra karena udh 
+      //Bagian dibawah ini hapus aja Mas Cakra karena udh
       //dihandle sama Protected Route jadi Aman tanpa syntax dibawah ini
       // if (token) {
       //   Cookies.get("roleUser") == "student"
@@ -160,17 +160,17 @@ export const GlobalProvider = () => {
         // console.log(res.data.data);
         setDetailDataStudent({ ...res.data.data });
       });
-    
-      await axios
+
+    await axios
       .get(`${BASE_URL}/api/actions/${nomorInduk}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
         console.log(res.data.data);
-        setDiciplinaryStudent([ ...res.data.data ]);
+        setDiciplinaryStudent([...res.data.data]);
         console.log(detailDataStudent);
       });
-    
+
     if (move === true) {
       navigate("/teacher/Input-Surat-Peringatan");
     }
@@ -469,8 +469,7 @@ export const GlobalProvider = () => {
     reportDiciplinary,
     setReportDiciplinary,
     diciplinaryStudent,
-    setDiciplinaryStudent
-    loadingListAllReport,
+    setDiciplinaryStudent,
   };
 
   let handleFunction = {
